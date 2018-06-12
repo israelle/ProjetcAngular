@@ -1,0 +1,22 @@
+.size_logo{
+    width: 7%;
+    height: 7%;
+    position: center;
+}
+.title_accueil{
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+    /*border-bottom: 2px solid #eee;*/
+
+}
+
+
+
+.carouselStyl {
+    width: 50%;
+    margin-right: auto;
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}

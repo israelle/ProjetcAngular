@@ -1,0 +1,24 @@
+.firstLetter{
+    font-size: 4em ;
+    font-family: Georgia, serif;
+    color: brown;
+}
+h1{
+    font-family: Georgia, serif;
+    text-align: center;
+    color: mediumseagreen;
+}
+
+.blocktext{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100em;
+}
+
+.logoBK{
+    width: 35%;
+}
+
+.placementLogo{
+    text-align: center;
+}

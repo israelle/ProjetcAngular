@@ -1,0 +1,8 @@
+export class Config {
+  public static API_URL = 'http://api.a5cv.dev';
+  public static CONTACT_MAIL = 'contact@a5sys.fr';
+  public static TOAST_TIMEOUT = 5000;
+
+  public static VALIDATED = 'v';
+  public static DRAFT = 'd';
+}

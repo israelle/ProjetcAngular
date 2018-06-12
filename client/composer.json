@@ -1,0 +1,10 @@
+{
+    "require": {
+        "doctrine/orm": "^2.5",
+        "doctrine/doctrine-bundle": "^1.8",
+        "doctrine/data-fixtures": "^1.2",
+        "symfony/serializer": "^3.4",
+        "phpunit/phpunit": "^6.5",
+        "sensio/generator-bundle": "2.3.*"
+    }
+}

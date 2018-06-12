@@ -1,0 +1,67 @@
+<h1 class="titleEvent">
+  Création d'un &Eacute;v&egrave;nement
+</h1>
+
+<div class="form-group">
+  <div class="form-group col-md-5">
+    <label>Nom de l'évènement: </label>
+    <input type="text" class="form-control" placeholder="nom de l'évènement" [(ngModel)]="event.name" name="nameEvent">
+  </div>
+  <div class="form-group col-md-5">
+    <label>Nom de l'association : </label>
+    <input type="text" class="form-control" placeholder="nom de l'association" [(ngModel)]="event.association.name" name="associationName">
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="form-group col-md-5">
+    <label for="logo">Logo</label>
+    <input type="file" class="form-control" id="logo" [(ngModel)]="event.association.logo" name="logo" (change)="onselected($event)"  accept=".jpg, .png, .gif, .jpeg">
+
+    <div class="progress" [hidden]="showProgressBar">
+      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) +  '%'"
+           [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+      <br><br>
+      <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+        File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group col-md-5">
+    <label>Adresse: </label>
+    <input type="text"class="form-control" placeholder="adresse" id="addressEvent" [(ngModel)]="event.address" name="address">
+  </div>
+
+</div>
+
+<div class="form-group">
+  <div class="form-group col-md-5">
+    <label>Date de début : </label>
+    <input type="datetime-local" class="form-control" id="dateDeDebut" [(ngModel)]="event.startDate" name="startDate">
+  </div>
+
+  <div class="form-group col-md-5">
+    <label>Date de fin : </label>
+    <input type="datetime-local" class="form-control" id="dateDeFin" [(ngModel)]="event.endDate" name="endDate">
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="form-group col-md-10">
+    <label>Descriptif: </label>
+    <textarea placeholder="(500 caracters)" id="descriptionEvent" class="form-control" name="description" [(ngModel)]="event.description"></textarea>
+  </div>
+</div>
+
+<!-- button's management-->
+<div class="form-group">
+  <div class="form-group col-md-5">
+    <button class="btn btn-success" (click)="save()"> Valider</button>
+    <button class="btn btn-primary">Effacer</button>
+    <a routerLink="/event" class="btn btn-danger">Annuler</a>
+  </div>
+</div>
+
+
+

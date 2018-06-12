@@ -1,0 +1,33 @@
+ ul {
+    margin:0;
+    padding:0;
+    list-style-type:none;
+    text-align:center;
+}
+ li {
+    /*float:left;*/
+    /*margin:auto;*/
+    /*padding:0;*/
+    /*background-color:black;*/
+}
+ li a {
+    display:block;
+    /*width:120px;*/
+     text-align: center;
+    /*text-decoration:none;*/
+    padding:5px;
+}
+ li a:hover {
+    color:brown;
+}
+
+ ul li ul {
+    display:none;
+}
+
+ ul li:hover ul {
+    display:block;
+}
+ li:hover ul li {
+    float:none;
+}

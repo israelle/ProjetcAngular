@@ -1,0 +1,4 @@
+export class Config {
+  public static API_URL = 'http://127.0.0.1:8000';
+
+}

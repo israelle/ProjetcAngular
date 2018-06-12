@@ -1,0 +1,50 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
+      <a class="navbar-brand" routerLinkActive="active current" routerLink="/home">Accueil</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active current"><a routerLink="/presentation">Présentation</a></li>
+        <li><a href="http://bamboukreyol.blogspot.fr/">Bambou Kréyol</a></li>
+          <li routerLinkActive="active current"><a routerLink="/gallery">Galerie Photo</a></li>
+          <li class=" dropdown" routerLinkActive="active current">
+              <a routerLink="/event" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&Eacute;v&egrave;nements <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li class=" dropdown" routerLinkActive="active current">
+                      <a routerLink="/event" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consulter les &eacute;v&egrave;nements</a>
+                  </li>
+                  <li routerLinkActive="active current"><a routerLink="event/add">Ajouter un &eacute;v&egrave;nement</a></li>
+              </ul>
+          </li>
+      </ul>
+
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Rechercher</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><p class="navbar-text">Already have an account?</p></li>
+        <li class="dropdown" routerLinkActive="active current">
+          <a routerLink="/login" class="dropdown-toggle" data-toggle="dropdown">
+              Login
+              <span class="caret"></span>
+          </a>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
