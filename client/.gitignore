@@ -8,10 +8,10 @@
 # dependencies
 /node_modules
 /vendor
-/client/vendor
+client/vendor
 
 # IDEs and editors
-/.idea
+.idea
 .project
 .classpath
 .c9/
