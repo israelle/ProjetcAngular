@@ -30,4 +30,8 @@ export class UserService {
         return this.http.get(API_URL + '/users');
     }
 
+    postUsers(newUser: any): Observable<any> {
+        return this.http.post(API_URL + '/users/', newUser);
+    }
+
 }

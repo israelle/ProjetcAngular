@@ -24,12 +24,25 @@ class User
  * @ORM\GeneratedValue(strategy="AUTO")
  */
     private $id ;
+    /**
+     * @var string
+     * @ORM\Column(name="prenom", type="string", length=255)
+     */
+    private $firstname;
 
     /**
      * @var string
-     * @ORM\Column(name="nom", type="string", length=25)
+     * @ORM\Column(name="nomDeFamille", type="string", length=255)
+     */
+    private $lastname;
+
+    /**
+     * @var string
+     * @ORM\Column(name="nom_utilisateur", type="string", length=255)
      */
     private $username;
+
+
 
     /**
      * @var string
@@ -54,29 +67,6 @@ class User
         return $this->id;
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return User
-     */
-    public function setName($name)
-    {
-        $this->username = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->username;
-    }
 
     /**
      * Set mail
@@ -148,5 +138,36 @@ class User
     public function getUsername()
     {
         return $this->username;
+    }
+    /**
+     * @return string
+     */
+    public function getFirstname(): string
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param string $firstname
+     */
+    public function setFirstname(string $firstname)
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastname(): string
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string $lastname
+     */
+    public function setLastname(string $lastname)
+    {
+        $this->lastname = $lastname;
     }
 }
