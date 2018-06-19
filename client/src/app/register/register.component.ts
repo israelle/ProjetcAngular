@@ -16,14 +16,15 @@ export class RegisterComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => {
       this.users = users;
-      console.log('users', this.users);
     });
   }
 
   registerUser() {
     const user = this.newUser;
-    console.log(user);
+      console.log('users', this.newUser);
     this.userService.postUsers(user);
+    console.log('ok');
+    console.log(this.userService.postUsers(user));
   }
 
 }

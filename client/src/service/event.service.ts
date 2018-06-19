@@ -8,7 +8,7 @@ import {AngularFireDatabase} from 'angularfire2/database';
 import * as firebase from 'firebase';
 
 
-const API_URL = environment.api_url;
+const API_URL = 'http://127.0.0.1:8000';
 
 @Injectable()
 export class EventService {

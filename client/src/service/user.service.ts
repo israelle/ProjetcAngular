@@ -7,7 +7,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
 
 
-const API_URL = environment.api_url;
+ const API_URL = 'http://127.0.0.1:8000';
 
 @Injectable()
 export class UserService {
@@ -31,7 +31,7 @@ export class UserService {
     }
 
     postUsers(newUser: any): Observable<any> {
-        return this.http.post(API_URL + '/users/', newUser);
+        return this.http.post(API_URL + '/users', [newUser.lastname, newUser.firstname, newUser.username, newUser.phone, newUser.mail]);
     }
 
 }
