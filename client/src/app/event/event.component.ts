@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {EventSharedService} from './event-shared.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-event',
@@ -12,10 +13,11 @@ export class EventComponent implements OnInit {
 
   constructor(
      private eventSharedService: EventSharedService,
+     private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
-      this.isLoading = true;
+      this.isLoading = false;
    this.seeEvent();
   }
 
@@ -24,15 +26,16 @@ export class EventComponent implements OnInit {
           .subscribe(data => {
               console.log(data);
               this.isLoading = true;
-              this.events = data;
-              // let startDate;
-              // let endDate;
-              // for (const event of this.events) {
-              //     startDate = new Date(event.startDate).toLocaleString();
-              //     event.startDate = startDate;
-              //     endDate = new Date(event.endDate).toLocaleString();
-              //     event.endDate = endDate;
-              // }
+              if (this.isLoading) {
+                  this.events = data;
+                  /** spinner starts on init */
+                  this.spinner.show();
+
+                  setTimeout(() => {
+                      /** spinner ends after 5 seconds */
+                      this.spinner.hide();
+                  }, 500);
+              }
           });
   }
 

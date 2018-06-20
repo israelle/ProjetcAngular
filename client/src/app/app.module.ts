@@ -32,6 +32,7 @@ import {environment} from '../environments/environment';
 import {AngularFireModule} from 'angularfire2';
 import {UploadService} from '../service/upload.service';
 import {AngularFireStorageModule} from 'angularfire2/storage';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 
 
@@ -53,6 +54,7 @@ import {AngularFireStorageModule} from 'angularfire2/storage';
     imports: [
         BrowserModule,
         NgxCarouselModule,
+        NgxSpinnerModule,
         CarouselModule.forRoot(),
         AlertModule,
         FormsModule,
