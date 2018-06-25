@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EventSharedService} from './event-shared.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-event',
@@ -8,8 +9,8 @@ import {NgxSpinnerService} from 'ngx-spinner';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-    private events: any;
-    private isLoading: boolean;
+    events: any;
+    isLoading = false;
 
   constructor(
      private eventSharedService: EventSharedService,
@@ -17,17 +18,16 @@ export class EventComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.isLoading = false;
    this.seeEvent();
   }
 
   seeEvent() {
+      this.isLoading = true;
       this.eventSharedService.getEvent()
-          .subscribe(data => {
-              console.log(data);
-              this.isLoading = true;
+          .finally(() => this.isLoading = false)
+          .subscribe(events => {
+              this.events = events;
               if (this.isLoading) {
-                  this.events = data;
                   /** spinner starts on init */
                   this.spinner.show();
 

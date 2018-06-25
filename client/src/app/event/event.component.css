@@ -36,3 +36,58 @@
     border: solid;
     border-radius: 3em;
 }
+
+/*_______________Spinner_______________*/
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    display: inline-block;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: 4px solid #bbb;
+    border-top-color: #555;
+    -webkit-animation: spin 1s infinite linear;
+    animation: spin 1s infinite linear;
+}
+
+/* Animation styles */
+@keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Optional — create your own variations! */
+.spinner-large {
+    width: 5rem;
+    height: 5rem;
+    border-width: 6px;
+}
+
+.spinner-slow {
+    animation: spinner 1s linear infinite;
+}
+
+.spinner-blue {
+    border-top-color: #09d;
+    border-left-color: #09d;
+}

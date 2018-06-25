@@ -24,7 +24,7 @@ import { ImageDetailComponent } from './image/image-detail.component';
 import {EventSharedService} from './event/event-shared.service';
 import {ApiRouter} from '../shared/api-routes/api-router.service';
 import {UserService} from '../service/user.service';
-import {AuthHttp, provideAuth} from 'angular2-jwt';
+import {AuthConfig, AuthHttp, provideAuth} from 'angular2-jwt';
 import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
@@ -33,8 +33,13 @@ import {AngularFireModule} from 'angularfire2';
 import {UploadService} from '../service/upload.service';
 import {AngularFireStorageModule} from 'angularfire2/storage';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {HttpWrapperModule} from 'angular4-http-wrapper';
+import {Http, HttpModule, RequestOptions} from '@angular/http';
 
 
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+    return new AuthHttp(new AuthConfig(), http, options);
+}
 
 @NgModule({
     declarations: [
@@ -55,10 +60,12 @@ import {NgxSpinnerModule} from 'ngx-spinner';
         BrowserModule,
         NgxCarouselModule,
         NgxSpinnerModule,
+        HttpWrapperModule,
         CarouselModule.forRoot(),
         AlertModule,
         FormsModule,
         HttpClientModule,
+        HttpModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule, // for database
         AngularFireStorageModule,
@@ -97,8 +104,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
         HttpClientModule,
         HttpClient,
         UploadService,
-        AuthHttp,
-        provideAuth({
+    provideAuth({
             headerName: 'Authorization',
             headerPrefix: 'bearer',
             tokenName: 'token',
