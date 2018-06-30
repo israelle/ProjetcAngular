@@ -23,6 +23,10 @@ export class EventSharedService {
         return this.eventService.deleteEvent(eventId);
     }
 
+    putEvent(eventId) {
+        return this.eventService.putEvent(eventId);
+    }
+
     // pushFileToStorage(fileUpload, progress: {percentage: number}) {
     //     return this.eventService.pushFileToStorage(fileUpload, progress);
     // }

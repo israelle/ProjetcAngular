@@ -14,6 +14,8 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *     attributes={"normalization_context"={"groups"={""}}},
  *     itemOperations={
  *         "get"={"method"="GET", "normalization_context"={"groups"={"event_get_item"}}},
+ *         "put"={"normalization_context"={"groups"={"event_put"}}},
+ *      "delete"={"method"="DELETE", "normalization_context"={"groups"={"event_delete"}}},
  *     },
  *     collectionOperations={
  *         "get"={"method"="GET", "normalization_context"={"groups"={"event_get"}}},

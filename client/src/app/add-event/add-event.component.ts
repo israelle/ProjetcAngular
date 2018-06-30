@@ -14,6 +14,7 @@ import {Validators} from '@angular/forms';
   styleUrls: ['./add-event.component.css']
 })
 export class AddEventComponent implements OnInit {
+
     private selectedFile: File;
     ref: AngularFireStorageReference;
     task: AngularFireUploadTask;
@@ -32,6 +33,7 @@ export class AddEventComponent implements OnInit {
   ngOnInit() {
     this.event.association = {};
       this.event.association.logo = '';
+      this.showProgressBar = false;
   }
 
     onselected(event) {
@@ -40,6 +42,7 @@ export class AddEventComponent implements OnInit {
     }
 
     saveFile(file: File) {
+        this.showProgressBar = true;
         console.log('file : ', file);
         const id = Math.random().toString(36).substring(2);
         this.ref = this.afStorage.ref(id);
@@ -60,15 +63,15 @@ export class AddEventComponent implements OnInit {
 
 
       this.eventSharedService.postEvent(infoEvent);
-      console.log('this.selectedFile');
-      console.log(this.selectedFile);
+    //  console.log('this.selectedFile');
+    //  console.log(this.selectedFile);
       this.saveFile(this.selectedFile);
 
-      const reader = new FileReader();
+     const reader = new FileReader();
       reader.onload = (event2: any) => {
               this.selectedFile = event2.target.result;
           };
           reader.readAsDataURL(this.selectedFile);
-  }
+   }
 
 }

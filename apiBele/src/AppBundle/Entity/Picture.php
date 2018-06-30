@@ -47,6 +47,12 @@ class Picture
      */
     private $path;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="pictures")
+     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+     */
+    private $category;
+
 
     public function getAbsolutePath()
     {

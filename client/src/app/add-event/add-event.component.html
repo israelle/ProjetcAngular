@@ -18,14 +18,6 @@
     <label for="logo">Logo</label>
     <input type="file" class="form-control" id="logo" [(ngModel)]="event.association.logo" name="logo" (change)="onselected($event)"  accept=".jpg, .png, .gif, .jpeg">
 
-    <div class="progress" [hidden]="showProgressBar">
-      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) +  '%'"
-           [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
-      <br><br>
-      <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
-        File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
-      </div>
-    </div>
   </div>
 
   <div class="form-group col-md-5">
@@ -52,6 +44,20 @@
     <label>Descriptif: </label>
     <textarea placeholder="(500 caracters)" id="descriptionEvent" class="form-control" name="description" [(ngModel)]="event.description"></textarea>
   </div>
+</div>
+
+<div class="form-group">
+  <div class="form-group col-md-10">
+    <div class="progress" [hidden]="!showProgressBar">
+      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) +  '%'"
+           [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>
+
+      <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+        File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- button's management-->

@@ -1,18 +1,17 @@
 import {Injectable} from '@angular/core';
 import {Config} from '../config';
 
-declare const Routing: any;
+
+declare var Routing: any;
 
 @Injectable()
 export class ApiRouter {
 
-  constructor() {
-    Routing.setBaseUrl(Config.API_URL);
-    console.log('Routing');
-    console.log(Routing);
-  }
+    constructor() {
+        Routing.setBaseUrl(Config.API_URL);
+    }
 
-   generate(routeName: string, parameters?: any) {
-    return Routing.generate(routeName, parameters);
-  }
+    generate(routeName: string, parameters?: any) {
+        return Routing.generate(routeName, parameters);
+    }
 }

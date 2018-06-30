@@ -38,5 +38,11 @@ export class EventComponent implements OnInit {
               }
           });
   }
+  deleteEvent(eventId) {
+      this.eventSharedService.deleteEvent(eventId);
+  }
+  putEvent(eventId) {
+      this.eventSharedService.putEvent(eventId);
+  }
 
 }
