@@ -14,12 +14,12 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *     attributes={"normalization_context"={"groups"={""}}},
  *     itemOperations={
  *         "get"={"method"="GET", "normalization_context"={"groups"={"event_get_item"}}},
- *         "put"={"normalization_context"={"groups"={"event_put"}}},
- *      "delete"={"method"="DELETE", "normalization_context"={"groups"={"event_delete"}}},
+ *         "put"={"method"="PUT", "denormalization_context"={"groups"={"event_put"}}},
+ *         "delete"={"method"="DELETE"}
  *     },
  *     collectionOperations={
  *         "get"={"method"="GET", "normalization_context"={"groups"={"event_get"}}},
- *         "post"={"method"="POST", "normalization_context"={"groups"={"event_post"}}},
+ *           "post"={"method"="POST", "denormalization_context"={"groups"={"event_post"}}}
  *     }
  * )
  *
@@ -35,7 +35,7 @@ class Event
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"event_get"})
+     * @Groups({"event_get", "event_post"})
      */
     private $id;
 

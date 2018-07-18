@@ -38,8 +38,7 @@ class Category
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Picture", mappedBy="category
-     * ")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Picture", mappedBy="category")
      * @ORM\JoinColumn(name="photo_id", referencedColumnName="id")
      */
     private $pictures;
