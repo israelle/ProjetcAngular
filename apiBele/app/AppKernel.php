@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

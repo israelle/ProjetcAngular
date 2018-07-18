@@ -83,11 +83,13 @@ api_platform:
     formats:
         json:     ['application/json']
         jsonld:   ['application/ld+json']
-    collection:
-        pagination:
-            enabled: false
+
 
 nelmio_api_doc: ~
 
 fos_js_routing:
   routes_to_expose: ['api_.*']
+
+
+sensio_framework_extra:
+    view: { annotations: false }
