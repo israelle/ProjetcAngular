@@ -61,10 +61,6 @@ export class AddEventComponent implements OnInit {
       //     infoEvent.association.logo = this.selectedFile;
       // }
 
-
-      this.eventSharedService.postEvent(infoEvent);
-    //  console.log('this.selectedFile');
-    //  console.log(this.selectedFile);
       this.saveFile(this.selectedFile);
 
      const reader = new FileReader();
@@ -72,6 +68,7 @@ export class AddEventComponent implements OnInit {
               this.selectedFile = event2.target.result;
           };
           reader.readAsDataURL(this.selectedFile);
+      this.eventSharedService.postEvent(infoEvent);
    }
 
 }

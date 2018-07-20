@@ -85,7 +85,15 @@ api_platform:
         jsonld:   ['application/ld+json']
 
 
-nelmio_api_doc: ~
+nelmio_api_doc:
+  sandbox:
+          accept_type: 'application/json'
+          body_format:
+              formats: ['json']
+              default_format: 'json'
+          request_format:
+              formats:
+                  json: 'application/json'
 
 fos_js_routing:
   routes_to_expose: ['api_.*']

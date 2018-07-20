@@ -14,7 +14,9 @@ export class UserService {
 
     url = 'http://127.0.0.1:8000';
     constructor(
-                 private http: HttpClient) {
+                 private http: HttpClient,
+                 private apiRouter: ApiRouter,
+                 public authHttp: AuthHttp) {
 
     }
 
@@ -30,8 +32,11 @@ export class UserService {
         return this.http.get(API_URL + '/users');
     }
 
+    // post() {
+    //     return this.authHttp.post()
+    // }
     postUsers(newUser: any): Observable<any> {
-        return this.http.post(API_URL + '/users', [newUser.lastname, newUser.firstname, newUser.username, newUser.phone, newUser.mail]);
+        return this.authHttp.post(this.apiRouter.generate('api_users_post_collection'), newUser)
+            .map(data => data.json());
     }
-
 }

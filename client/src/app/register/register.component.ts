@@ -22,9 +22,10 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     const user = this.newUser;
       console.log('users', this.newUser);
-    this.userService.postUsers(user);
-    console.log('ok');
-    console.log(this.userService.postUsers(user));
+    this.userService.postUsers(user)
+        .subscribe(() => {
+          // message de notification
+        });
   }
 
 }
