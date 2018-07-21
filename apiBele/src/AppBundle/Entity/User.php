@@ -42,8 +42,6 @@ class User
      */
     private $username;
 
-
-
     /**
      * @var string
      * @ORM\Column(name="email", type="string", length=50)
@@ -55,6 +53,28 @@ class User
      * @ORM\Column(name="mobile", type="string", length=10)
      */
     private  $phone;
+
+    /**
+     * @var string
+     * @ORM\Column(name="mot_de_passe", type="string", length=50)
+     */
+    private $password;
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
+    }
 
 
     /**

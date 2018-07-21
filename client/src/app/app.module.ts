@@ -35,6 +35,9 @@ import {AngularFireStorageModule} from 'angularfire2/storage';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {HttpWrapperModule} from 'angular4-http-wrapper';
 import {Http, HttpModule, RequestOptions} from '@angular/http';
+import {ToastyModule} from 'ng2-toasty';
+import {NotificationComponent} from '../shared/notification/notification.component';
+import {NotificationService} from '../shared/notification/notification.service';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -54,7 +57,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         GalleryComponent,
         ImageComponent,
         ImageFilterPipe,
-        ImageDetailComponent
+        ImageDetailComponent,
+        NotificationComponent
     ],
     imports: [
         BrowserModule,
@@ -64,6 +68,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         CarouselModule.forRoot(),
         AlertModule,
         FormsModule,
+        ToastyModule.forRoot(),
         HttpClientModule,
         HttpModule,
         AngularFireModule.initializeApp(environment.firebase),
@@ -100,6 +105,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ImageService,
         ApiRouter,
         EventSharedService,
+        NotificationService,
         UserService,
         HttpClientModule,
         HttpClient,
