@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {EventSharedService} from './event-shared.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import 'rxjs/add/operator/finally';
+import {NotificationType} from '../../shared/notification/notification-type.model';
 
 @Component({
   selector: 'app-event',
@@ -38,8 +39,13 @@ export class EventComponent implements OnInit {
               }
           });
   }
-  deleteEvent(eventId) {
-      this.eventSharedService.deleteEvent(eventId);
+  deleteEvent(event) {
+      this.eventSharedService.deleteEvent(event)
+          .subscribe(() => {
+                  // message de notification
+              },
+          );
+      console.log('ok fait');
   }
   putEvent(eventId) {
       this.eventSharedService.putEvent(eventId);

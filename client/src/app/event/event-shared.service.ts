@@ -19,8 +19,8 @@ export class EventSharedService {
     postEvent(event) {
         return this.eventService.postEvent(event);
     }
-    deleteEvent(eventId) {
-        return this.eventService.deleteEvent(eventId);
+    deleteEvent(event) {
+        return this.eventService.deleteEvent(event);
     }
 
     putEvent(eventId) {

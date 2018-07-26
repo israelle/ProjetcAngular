@@ -14,7 +14,7 @@
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
     "require": {
-        "php": ">=7.1.15",
+        "php": ">=7.0",
         "api-platform/core": "^2.0",
         "doctrine/annotations": "^1.6",
         "doctrine/doctrine-bundle": "^1.6",
@@ -22,6 +22,7 @@
         "friendsofsymfony/jsrouting-bundle": "^2.2",
         "friendsofsymfony/rest-bundle": "^2.3",
         "incenteev/composer-parameter-handler": "^2.0",
+        "lexik/jwt-authentication-bundle": "^2.5",
         "nelmio/api-doc-bundle": "^2.13",
         "nelmio/cors-bundle": "^1.4",
         "phpdocumentor/reflection-docblock": "^3.0",
