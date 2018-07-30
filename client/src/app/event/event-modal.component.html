@@ -1,0 +1,63 @@
+<!-- Delete certification modal -->
+<div *ngIf="isDeleteModalShown()"
+     class="modal fade" bsModal
+     #deleteModal="bs-modal"
+     [config]="{show: true}"
+     (onHidden)="hideDeleteModal()"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Supprimer évènement</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p >Confirmez-vous la suppression de cet évènement ?</p>
+                <h3>{{selectedEvent.title}}</h3>
+                <p> Organisateur(s) : {{selectedEvent.association.name}}</p>
+                <p> Lieu : {{selectedEvent.address}}</p>
+                <p>Descpription : {{selectedEvent.description}}</p>
+                <p>Date début: {{selectedEvent.startDate}}</p>
+                <p>Date fin: {{selectedEvent.endDate}}</p>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-default" (click)="deleteModal.hide()">Annuler</button>
+                <button class="btn btn-danger" (click)="delete()" [disabled]="isDeleting">
+                    <div class="spinner spinner-small" *ngIf="isDeleting"></div>
+                    <!--i18n-->Oui, supprimer<!--/i18n-->
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit certification modal -->
+<div *ngIf="isEditModalShown()"
+     class="modal fade" bsModal
+     #editModal="bs-modal"
+     [config]="{show: true}"
+     (onHidden)="hideEditModal()"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left" >Modifier un évènement</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="editModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <app-add-event></app-add-event>
+            </div>
+        </div>
+    </div>
+</div>

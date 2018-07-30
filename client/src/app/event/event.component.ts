@@ -18,37 +18,66 @@ export class EventComponent implements OnInit {
      private spinner: NgxSpinnerService
   ) { }
 
-  ngOnInit() {
-   this.seeEvent();
-  }
+      ngOnInit() {
+       this.seeEvent();
+      }
 
-  seeEvent() {
-      this.isLoading = true;
-      this.eventSharedService.getEvent()
-          .finally(() => this.isLoading = false)
-          .subscribe(events => {
-              this.events = events;
-              if (this.isLoading) {
-                  /** spinner starts on init */
-                  this.spinner.show();
+      seeEvent() {
+          this.isLoading = true;
+          this.eventSharedService.findEvents()
+              .finally(() => this.isLoading = false)
+              .subscribe(events => {
+                  this.events = events;
+                  if (this.isLoading) {
+                      /** spinner starts on init */
+                      this.spinner.show();
+                      setTimeout(() => {
+                          /** spinner ends after 5 seconds */
+                          this.spinner.hide();
+                      }, 500);
+                  }
+              });
+      }
 
-                  setTimeout(() => {
-                      /** spinner ends after 5 seconds */
-                      this.spinner.hide();
-                  }, 500);
-              }
-          });
-  }
-  deleteEvent(event) {
-      this.eventSharedService.deleteEvent(event)
-          .subscribe(() => {
-                  // message de notification
-              },
-          );
-      console.log('ok fait');
-  }
-  putEvent(eventId) {
+      refresh() {
+          this.eventSharedService.findEvents()
+              .finally(() => this.isLoading = false)
+              .subscribe(events => {
+                  this.events = events;
+                  if (this.isLoading) {
+                      /** spinner starts on init */
+                      this.spinner.show();
+                      setTimeout(() => {
+                          /** spinner ends after 5 seconds */
+                          this.spinner.hide();
+                      }, 500);
+                  }
+              });
+      }
+
+      deleteEvent(event) {
+          this.eventSharedService.deleteEvent(event)
+              .subscribe(() => {
+                      // message de notification
+                  this.refresh();
+                  },
+              );
+      }
+
+    isAnyModalShown() {
+        return this.eventSharedService.isDeleteModalShown || this.eventSharedService.isEditModalShown;
+    }
+
+    showEditModal(infoEvent: any) {
+        this.eventSharedService.showEditModal(infoEvent);
+    }
+
+    showDeleteModal( infoEvent: any) {
+      this.eventSharedService.showDeleteModal(infoEvent);
+    }
+
+    putEvent(eventId) {
       this.eventSharedService.putEvent(eventId);
-  }
+    }
 
 }

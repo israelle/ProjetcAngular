@@ -22,6 +22,11 @@ export class EventService {
         return this.http.get(API_URL + '/events');
     }
 
+    findEvents(): Observable<any> {
+        return this.authHttp.get(this.apiRouter.generate('api_events_get_collection'))
+            .map(data => data.json());
+    }
+
     postEvent(event: any): Observable<any> {
     return this.http.post(API_URL + '/events', event);
     }

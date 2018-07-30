@@ -14,7 +14,7 @@ import {RouterModule, Route} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import {NgxCarouselModule} from 'ngx-carousel';
-import {AlertModule, CarouselModule} from 'ngx-bootstrap';
+import {AlertModule, CarouselModule, ModalModule} from 'ngx-bootstrap';
 import { AddEventComponent } from './add-event/add-event.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ImageComponent } from './image/image.component';
@@ -38,11 +38,7 @@ import {Http, HttpModule, RequestOptions} from '@angular/http';
 import {ToastyModule} from 'ng2-toasty';
 import {NotificationComponent} from '../shared/notification/notification.component';
 import {NotificationService} from '../shared/notification/notification.service';
-
-
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-    return new AuthHttp(new AuthConfig(), http, options);
-}
+import {EventModalComponent} from './event/event-modal.component';
 
 @NgModule({
     declarations: [
@@ -58,7 +54,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ImageComponent,
         ImageFilterPipe,
         ImageDetailComponent,
-        NotificationComponent
+        NotificationComponent,
+        EventModalComponent,
     ],
     imports: [
         BrowserModule,
@@ -74,6 +71,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule, // for database
         AngularFireStorageModule,
+        ModalModule.forRoot(),
         RouterModule.forRoot([
             {path: '',
                 component: HomeComponent,
