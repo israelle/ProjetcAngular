@@ -31,11 +31,18 @@ export class AddEventComponent implements OnInit {
 
 
   ngOnInit() {
+      if (this.eventAlreadyExist()) {
+          this.event = this.eventSharedService.selectedEvent;
+          console.log('ngoninit ', this.event);
+      }
     this.event.association = {};
       this.event.association.logo = '';
       this.showProgressBar = false;
   }
 
+  eventAlreadyExist() {
+      return this.eventSharedService.selectedEvent !== null;
+  }
     onselected(event) {
       this.selectedFile = event.target.files[0];
 
@@ -43,7 +50,6 @@ export class AddEventComponent implements OnInit {
 
     saveFile(file: File) {
         this.showProgressBar = true;
-        console.log('file : ', file);
         const id = Math.random().toString(36).substring(2);
         this.ref = this.afStorage.ref(id);
         this.task = this.ref.put(file);
@@ -55,8 +61,6 @@ export class AddEventComponent implements OnInit {
   save() {
 
       const infoEvent = this.event;
-      console.log('infoEvent');
-      console.log(infoEvent);
       // if (infoEvent.association.logo !== '') {
       //     infoEvent.association.logo = this.selectedFile;
       // }
