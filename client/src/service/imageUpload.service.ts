@@ -26,7 +26,9 @@ export class ImageUploadService {
             },
             () => {
                 // success
-                fileUpload.url = uploadTask.snapshot.downloadURL;
+                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    fileUpload.url = downloadURL;
+                    });
                 fileUpload.name = fileUpload.file.name;
                 this.saveFileData(fileUpload);
             }
@@ -35,6 +37,7 @@ export class ImageUploadService {
 
 
     private saveFileData(fileUpload: ImageUploadModel) {
+        console.log(this.db);
         this.db.list(`${this.basePath}/`).push(fileUpload);
     }
 }

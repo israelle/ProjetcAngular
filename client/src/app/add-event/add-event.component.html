@@ -17,9 +17,7 @@
         </option>
       </select>
     </div>
-    <div class="form-group">
-      <button class="btn btn-primary" (click)="lgModal.show()">Autre</button>
-    </div>
+
   </div>
 
   <div class="form-group">
@@ -32,12 +30,12 @@
 
   <div class="form-group">
     <div class="form-group col-md-5">
-      <label>Date de début : </label>
+      <label>Date de début: </label>
       <input type="datetime-local" class="form-control" id="dateDeDebut" [(ngModel)]="event.startDate" name="startDate">
     </div>
 
     <div class="form-group col-md-5">
-      <label>Date de fin : </label>
+      <label>Date de fin: </label>
       <input type="datetime-local" class="form-control" id="dateDeFin" [(ngModel)]="event.endDate" name="endDate">
     </div>
   </div>
@@ -49,20 +47,6 @@
     </div>
   </div>
 
-  <!--<div class="form-group">-->
-    <!--<div class="form-group col-md-10">-->
-      <!--<div class="progress" [hidden]="!showProgressBar">-->
-        <!--<div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) +  '%'"-->
-             <!--[attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>-->
-
-        <!--<div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">-->
-          <!--File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-
-  <!--</div>-->
-
   <!-- button's management-->
   <div class="form-group">
     <div class="form-group col-md-5">
@@ -73,6 +57,9 @@
   </div>
 </form>
 
+<div class="form-group">
+  <button class="btn btn-primary" (click)="lgModal.show()">Autre</button>
+</div>
 <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
      role="dialog" aria-labelledby="dialog-sizes-name1">
   <div class="modal-dialog modal-lg">
