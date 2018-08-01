@@ -28,7 +28,8 @@ export class EventService {
     }
 
     postEvent(event: any): Observable<any> {
-    return this.http.post(API_URL + '/events', event);
+    return this.authHttp.post(this.apiRouter.generate('api_events_post_collection'), event)
+        .map(data => data.json());
     }
 
     deleteEvent(event): Observable<any> {
@@ -39,7 +40,8 @@ export class EventService {
     }
 
     putEvent(eventId) {
-    return this.http.put( API_URL + '/events/', eventId);
+        return this.authHttp.put(this.apiRouter.generate('api_events_delete_item'), eventId)
+            .map(res => res.json());
     }
 
 }

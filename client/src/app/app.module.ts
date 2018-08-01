@@ -30,7 +30,6 @@ import {FormsModule} from '@angular/forms';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from 'angularfire2';
-import {UploadService} from '../service/upload.service';
 import {AngularFireStorageModule} from 'angularfire2/storage';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {HttpWrapperModule} from 'angular4-http-wrapper';
@@ -39,10 +38,15 @@ import {ToastyModule} from 'ng2-toasty';
 import {NotificationComponent} from '../shared/notification/notification.component';
 import {NotificationService} from '../shared/notification/notification.service';
 import {EventModalComponent} from './event/event-modal.component';
+import {AssociationService} from '../service/association.service';
+import {AddAssociationComponent} from './add-association/add-association.component';
+import {ImageUploadService} from '../service/imageUpload.service';
+import {ImageUploadModel} from './image/imageUpload-model';
 
 @NgModule({
     declarations: [
         AppComponent,
+        AddAssociationComponent,
         LoginComponent,
         PresentationComponent,
         EventComponent,
@@ -101,13 +105,14 @@ import {EventModalComponent} from './event/event-modal.component';
         EventService,
         PresentationService,
         ImageService,
+        AssociationService,
         ApiRouter,
         EventSharedService,
         NotificationService,
         UserService,
         HttpClientModule,
         HttpClient,
-        UploadService,
+        ImageUploadService,
     provideAuth({
             headerName: 'Authorization',
             headerPrefix: 'bearer',

@@ -1,6 +1,6 @@
 <div class="col-md-6 col-md-offset-3">
   <h2>Register</h2>
-  <form name="form"  #f="ngForm" (ngSubmit)="registerUser()" #f="ngForm" id="register-form" novalidate>
+  <form name="form"  #f="ngForm" (ngSubmit)="registerUser()" id="register-form" novalidate>
 
     <div class="form-group" [ngClass]="{'has-error': f.submitted && (!firstname.valid || formErrors.cv)}">
       <label for="firstname">First Name</label>

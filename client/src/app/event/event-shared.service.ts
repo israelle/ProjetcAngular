@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EventService } from '../../service/event.service';
 
-
 @Injectable()
 export class EventSharedService {
 
@@ -10,8 +9,7 @@ export class EventSharedService {
     selectedEvent: any = {};
     events: any;
     constructor(
-        private eventService: EventService
-
+        private eventService: EventService,
     ) {}
 
     findEvents() {
@@ -28,13 +26,6 @@ export class EventSharedService {
         return this.eventService.putEvent(eventId);
     }
 
-    // pushFileToStorage(fileUpload, progress: {percentage: number}) {
-    //     return this.eventService.pushFileToStorage(fileUpload, progress);
-    // }
-
-    saveFile(file) {
-       // this.eventService.saveFile(file);
-    }
     refresh() {
         this.eventService.getEvent();
     }

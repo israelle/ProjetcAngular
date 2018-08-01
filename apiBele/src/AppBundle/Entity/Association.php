@@ -21,7 +21,7 @@ class Association
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"event_get"})
+     * @Groups({"event_get","event_post"})
      */
     private $id;
 
@@ -29,7 +29,7 @@ class Association
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
-     * @Groups({"event_get"})
+     * @Groups({"event_get","event_post"})
      */
     private $name;
 
@@ -37,7 +37,7 @@ class Association
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
-     * @Groups({"event_get"})
+     * @Groups({"event_get","event_post"})
      */
     private $description;
 

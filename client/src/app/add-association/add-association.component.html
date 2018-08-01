@@ -1,0 +1,23 @@
+
+    <div class="form-group col-md-8">
+        <div class="form-group">
+            <label>Nom de l'association : </label>
+            <input type="text" class="form-control" placeholder="nom de l'association" [(ngModel)]="association.name" name="associationName">
+        </div>
+        <div class="form-group">
+            <label for="logo">Logo</label>
+            <input type="file" class="form-control" id="logo" [(ngModel)]="association.logo" name="logo" (change)="onselected($event)"  accept=".jpg, .png, .gif, .jpeg">
+        </div>
+        <div class="form-group">
+            <label for="description">Descriptif: </label>
+            <textarea placeholder="(500 caracters max)" class="form-control" id="description" name="description" [(ngModel)]="association.description"></textarea>
+        </div>
+
+
+    </div>
+    <div class="form-group col-md-6">
+        <button class="btn btn-success"> Enregistrer</button>
+        <button class="btn btn-primary">Effacer</button>
+        <a routerLink="/event/add" class="btn btn-danger">Annuler</a>
+    </div>
+
