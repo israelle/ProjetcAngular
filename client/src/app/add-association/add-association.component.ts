@@ -24,6 +24,7 @@ export class AddAssociationComponent implements OnInit {
         private imageUploadService: ImageUploadService,
     ) {}
     ngOnInit() {
+        this.association.logo = {};
     }
 
     onselected(event) {
@@ -31,7 +32,14 @@ export class AddAssociationComponent implements OnInit {
 
     }
     save() {
+        this.upload();
        const association =  this.association;
+       console.log('association before save: ', association);
+       // if (association.logo !== null ) {
+       //     association.logo.path = this.currentFileUpload.url;
+       //     association.logo.name = this.currentFileUpload.name;
+       // }
+       //  console.log('association save after: ', association);
        this.associationService.save(association)
            .subscribe(
                () => {
@@ -48,6 +56,10 @@ export class AddAssociationComponent implements OnInit {
         const file = this.selectedFiles.item(0);
         this.currentFileUpload = new ImageUploadModel(file);
         this.imageUploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+        console.log('this.currentFileUpload', this.currentFileUpload);
+        this.association.logo.path = this.currentFileUpload.getUrl();
+        this.association.logo.name = this.currentFileUpload.file.name;
+        console.log('tthis.association.logo', this.association.logo);
     }
 
 }

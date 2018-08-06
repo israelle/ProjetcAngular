@@ -35,13 +35,6 @@ class Picture
 
     /**
      * @var string
-     * @ORM\Column(name="description", type="string", length=50)
-     * @Groups({"event_get"})
-     */
-    private $description;
-
-    /**
-     * @var string
      * @ORM\Column(name="chemin", type="string", length=255)
      * @Groups({"event_get"})
      */
@@ -130,30 +123,6 @@ class Picture
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Picture
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
