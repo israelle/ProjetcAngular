@@ -19,7 +19,7 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 })
 export class AddEventComponent implements OnInit {
     associations: any;
-
+    selectedWorkout: any;
   constructor(private eventSharedService: EventSharedService,
               private notificationService: NotificationService,
               private associationService: AssociationService,
@@ -37,16 +37,34 @@ export class AddEventComponent implements OnInit {
       this.event.association.logo = '';
 
       this.associationService.getAssociation()
-          .subscribe(associations =>
-              this.associations = associations);
+          .subscribe(associations => {
+                  this.associations = associations;
+            });
   }
 
   eventAlreadyExist() {
       return this.eventSharedService.selectedEvent !== null;
   }
 
-  save() {
+    onChange(association) {
+      console.log(association);
+              this.event.association = association ;
+    }
+    onChangeStartDate(event) {
+        this.event.startDate = event;
+    }
 
+    onChangeEndDate(event) {
+        this.event.endDate = event;
+    }
+    onChangeAddress(event) {
+        this.event.address = event;
+    }
+    onChangeTitle(event) {
+      this.event.title = event;
+    }
+
+  save() {
       const infoEvent = this.event;
       this.eventSharedService.postEvent(infoEvent)
           .subscribe(() => {

@@ -2,13 +2,26 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ImageUploadModel } from '../app/image/imageUpload-model';
+import {Observable} from 'rxjs/Observable';
+import {FirebaseListObservable} from 'angularfire2/database-deprecated';
 
 
 @Injectable()
 export class ImageUploadService {
+    get images(): FirebaseListObservable<any[]> {
+        return this._images;
+    }
+
+    set images(value: FirebaseListObservable<any[]>) {
+        this._images = value;
+    }
 
     private basePath = '/uploads';
-    constructor( private db: AngularFireDatabase) { }
+    private _images: FirebaseListObservable<any[]>;
+
+    constructor( private db: AngularFireDatabase) {
+        // this._images = db.list('uploads');
+    }
 
     pushFileToStorage(fileUpload: ImageUploadModel, progress: {percentage: number}) {
         const storageRef = firebase.storage().ref();
@@ -28,6 +41,8 @@ export class ImageUploadService {
                 // success
                 uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
                     fileUpload.url = downloadURL;
+                    console.log('fileUpload', fileUpload);
+                    console.log('fileUpload.url', fileUpload.url);
                     });
                 fileUpload.name = fileUpload.file.name;
                 this.saveFileData(fileUpload);
@@ -36,8 +51,12 @@ export class ImageUploadService {
     }
 
 
+    getImages(listPath) {
+        return this.db.list(listPath).valueChanges();
+    }
+
+
     private saveFileData(fileUpload: ImageUploadModel) {
-        console.log(this.db);
         this.db.list(`${this.basePath}/`).push(fileUpload);
     }
 }

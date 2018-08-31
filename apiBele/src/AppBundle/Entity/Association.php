@@ -45,7 +45,7 @@ class Association
     /**
      * @ORM\ManyToOne(targetEntity="Picture")
      * @ORM\JoinColumn(name="photo_id", referencedColumnName="id")
-     * @Groups({"event_get"})
+     * @Groups({"event_get","event_post"})
      */
     private $logo;
 

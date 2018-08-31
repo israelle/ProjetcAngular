@@ -4,6 +4,7 @@ import {NotificationService} from '../../shared/notification/notification.servic
 import {NotificationType} from '../../shared/notification/notification-type.model';
 import {ImageUploadService} from '../../service/imageUpload.service';
 import {ImageUploadModel} from '../image/imageUpload-model';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-add-association',
@@ -15,6 +16,7 @@ export class AddAssociationComponent implements OnInit {
     association: any = {};
     selectedFile: any;
     selectedFiles: FileList;
+    getImages;
     currentFileUpload: ImageUploadModel;
     progress: {percentage: number} = {percentage: 0};
 
@@ -25,6 +27,12 @@ export class AddAssociationComponent implements OnInit {
     ) {}
     ngOnInit() {
         this.association.logo = {};
+        // this.imageUploadService.getImages('/uploads')
+        //     .subscribe(imgage => {
+        //         console.log('imgage', imgage);
+        //     });
+        this.getImages = this.imageUploadService.getImages('/uploads');
+        console.log('this.getImages', this.getImages);
     }
 
     onselected(event) {
@@ -35,11 +43,6 @@ export class AddAssociationComponent implements OnInit {
         this.upload();
        const association =  this.association;
        console.log('association before save: ', association);
-       // if (association.logo !== null ) {
-       //     association.logo.path = this.currentFileUpload.url;
-       //     association.logo.name = this.currentFileUpload.name;
-       // }
-       //  console.log('association save after: ', association);
        this.associationService.save(association)
            .subscribe(
                () => {
@@ -56,10 +59,11 @@ export class AddAssociationComponent implements OnInit {
         const file = this.selectedFiles.item(0);
         this.currentFileUpload = new ImageUploadModel(file);
         this.imageUploadService.pushFileToStorage(this.currentFileUpload, this.progress);
-        console.log('this.currentFileUpload', this.currentFileUpload);
+        console.log('this.currentFileUpload', this.imageUploadService);
+
         this.association.logo.path = this.currentFileUpload.getUrl();
         this.association.logo.name = this.currentFileUpload.file.name;
         console.log('tthis.association.logo', this.association.logo);
-    }
 
+    }
 }

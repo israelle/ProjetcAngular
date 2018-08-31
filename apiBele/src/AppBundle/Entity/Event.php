@@ -40,7 +40,7 @@ class Event
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Association", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Association")
      * @Groups({"event_get", "event_post"})
 
      */
