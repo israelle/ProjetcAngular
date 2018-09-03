@@ -10,6 +10,10 @@ import {NotificationType} from '../../shared/notification/notification-type.mode
 import {NotificationService} from '../../shared/notification/notification.service';
 import {AssociationService} from '../../service/association.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {unitOfTime} from 'moment';
+import * as moment from 'moment';
+import {DateButton} from 'angular-bootstrap-datetimepicker';
+import 'moment/locale/fr';
 
 
 @Component({
@@ -20,6 +24,7 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 export class AddEventComponent implements OnInit {
     associations: any;
     selectedWorkout: any;
+    selectedDate: Date;
   constructor(private eventSharedService: EventSharedService,
               private notificationService: NotificationService,
               private associationService: AssociationService,
@@ -27,12 +32,14 @@ export class AddEventComponent implements OnInit {
   event: any = [];
     fileName = '';
 
-
+    title = 'Dale Lotts\' angular bootstrap date & time picker';
+    startView = 'day';
+    minuteStep = 5;
   ngOnInit() {
       if (this.eventAlreadyExist()) {
           this.event = this.eventSharedService.selectedEvent;
       }
-
+      moment.locale('fr'); // set to french
     this.event.association = {};
       this.event.association.logo = '';
 
@@ -41,6 +48,11 @@ export class AddEventComponent implements OnInit {
                   this.associations = associations;
             });
   }
+
+    selectFilter = (dateButton: DateButton, viewName: string) => {
+        const now = moment().startOf(viewName as unitOfTime.StartOf).valueOf();
+        return dateButton.value >= now;
+    }
 
   eventAlreadyExist() {
       return this.eventSharedService.selectedEvent !== null;
@@ -60,6 +72,13 @@ export class AddEventComponent implements OnInit {
     onChangeAddress(event) {
         this.event.address = event;
     }
+    onChangeEndTime(event) {
+        this.event.endTime = event;
+    }
+    onChangeStartTime(event) {
+      this.event.startTime = event;
+    }
+
     onChangeTitle(event) {
       this.event.title = event;
     }

@@ -14,7 +14,7 @@ import {RouterModule, Route} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import {NgxCarouselModule} from 'ngx-carousel';
-import {AlertModule, CarouselModule, ModalModule} from 'ngx-bootstrap';
+import {AlertModule, BsDatepickerModule, CarouselModule, ModalModule, TimepickerModule} from 'ngx-bootstrap';
 import { AddEventComponent } from './add-event/add-event.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ImageComponent } from './image/image.component';
@@ -41,7 +41,9 @@ import {EventModalComponent} from './event/event-modal.component';
 import {AssociationService} from '../service/association.service';
 import {AddAssociationComponent} from './add-association/add-association.component';
 import {ImageUploadService} from '../service/imageUpload.service';
-import {ImageUploadModel} from './image/imageUpload-model';
+import {DlDateTimePickerDateModule} from 'angular-bootstrap-datetimepicker';
+import {CalendarModule} from 'primeng/calendar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -63,19 +65,24 @@ import {ImageUploadModel} from './image/imageUpload-model';
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         NgxCarouselModule,
         NgxSpinnerModule,
         HttpWrapperModule,
         CarouselModule.forRoot(),
+        TimepickerModule.forRoot(),
+        BsDatepickerModule.forRoot(),
         AlertModule,
         FormsModule,
         ToastyModule.forRoot(),
+        CalendarModule,
         HttpClientModule,
         HttpModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule, // for database
         AngularFireStorageModule,
         ModalModule.forRoot(),
+        DlDateTimePickerDateModule,
         RouterModule.forRoot([
             {path: '',
                 component: HomeComponent,
@@ -104,6 +111,7 @@ import {ImageUploadModel} from './image/imageUpload-model';
         LoginService,
         EventService,
         PresentationService,
+        FormsModule,
         ImageService,
         AssociationService,
         ApiRouter,

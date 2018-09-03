@@ -56,7 +56,7 @@ class Event
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_de_debut", type="datetime")
+     * @ORM\Column(name="date_de_debut", type="date")
      * @Groups({"event_get", "event_post"})
      */
     private $startDate;
@@ -64,10 +64,24 @@ class Event
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_de_fin", type="datetime")
+     * @ORM\Column(name="date_de_fin", type="date")
      * @Groups({"event_get", "event_post"})
      */
     private $endDate;
+
+    /**
+     * @var \DateTime
+     *  @ORM\Column(name="horaire_de_debut", type="time")
+     *  @Groups({"event_get", "event_post"})
+     */
+    private $startTime;
+
+    /**
+     * @var \DateTime
+     *  @ORM\Column(name="horaire_de_fin", type="time")
+     *  @Groups({"event_get", "event_post"})
+     */
+    private $endTime;
 
     /**
      * @var string
@@ -94,12 +108,12 @@ class Event
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Event
-     */
+ * Set title
+ *
+ * @param string $title
+ *
+ * @return Event
+ */
     public function setTitle($title)
     {
         $this->title = $title;
@@ -163,6 +177,54 @@ class Event
     public function getEndDate()
     {
         return $this->endDate;
+    }
+
+    /**
+     * Set title
+     *
+     * @param \DateTime $startTime
+     *
+     * @return Event
+     */
+    public function setStartTime($startTime)
+    {
+        $this->startTime = $startTime;
+
+        return $this;
+    }
+
+    /**
+     * Get startTime
+     *
+     * @return \DateTime
+     */
+    public function getStartTime()
+    {
+        return $this->startTime;
+    }
+
+    /**
+     * Set title
+     *
+     * @param \DateTime $endTime
+     *
+     * @return Event
+     */
+    public function setEndTime($endTime)
+    {
+        $this->endTime = $endTime;
+
+        return $this;
+    }
+
+    /**
+     * Get endTime
+     *
+     * @return \DateTime
+     */
+    public function getEndTime()
+    {
+        return $this->endTime;
     }
 
     /**

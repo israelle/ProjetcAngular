@@ -1,79 +1,240 @@
+
 <h1 class="titleEvent">
   Création d'un &Eacute;v&egrave;nement
 </h1>
+<div class="container">
+  <table class="table table-striped">
+    <tbody>
+    <tr>
+      <td colspan="1">
+        <form name="form" class="well form-horizontal" #f="ngForm" (ngSubmit)="save()" id="add-event-form" novalidate>
+        <fieldset>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Nom de l'évènement:</label>
+            <div class="col-md-8 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input type="text" class="form-control" placeholder="nom de l'évènement" [(ngModel)]="event.title" (ngModelChange)="onChangeTitle($event)" name="nameEvent">
+              </div>
+            </div>
+            </div>
 
-<form name="form"  #f="ngForm" (ngSubmit)="save()" id="add-event-form" novalidate>
-  <div class="form-group">
-    <div class="form-group col-md-5">
-      <label>Nom de l'évènement: </label>
-      <input type="text" class="form-control" placeholder="nom de l'évènement" [(ngModel)]="event.title" (ngModelChange)="onChangeTitle($event)" name="nameEvent">
-    </div>
-    <div class="form-group col-md-5">
-      <label>Nom de l'association : </label>
-      <select [(ngModel)]="selectedWorkout" name="selecedValue" class="form-control" (ngModelChange)="onChange($event)">
-        <option value="? undefined:undefined ?"></option>
-        <option *ngFor="let association of associations" id="association_{{association.id}}" [ngValue]="association">
-          {{association.name}}
-        </option>
-      </select>
-    </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Nom de l'association:</label>
+            <div class="col-md-8 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select [(ngModel)]="selectedWorkout" name="selecedValue" class="form-control" (ngModelChange)="onChange($event)">
+                <option value="? undefined:undefined ?"></option>-->
+                <option *ngFor="let association of associations" id="association_{{association.id}}" [ngValue]="association">
+                {{association.name}}
+                </option>
+                </select>
+              </div>
+            </div>
+          </div>
 
-  </div>
+          <!--Adresse-->
+          <div class="form-group">
+            <label class="col-md-4 control-label">Addresse :</label>
+            <div class="col-md-8 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                <input id="addressLine1" name="addressLine1" placeholder="Address" class="form-control" [(ngModel)]="event.address" required="true" type="text" (ngModelChange)="onChangeAddress($event)">
+              </div>
+            </div>
+          </div>
 
-  <div class="form-group">
-    <div class="form-group col-md-5">
-      <label>Adresse: </label>
-      <input type="text"class="form-control" placeholder="adresse" id="addressEvent" [(ngModel)]="event.address" (ngModelChange)="onChangeAddress($event)"name="address">
-    </div>
+          <!--Date de début-->
+          <div class="form-group">
+          <label class="col-md-4 control-label">Date de début :</label>
+          <div class="col-md-8 inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+              <div class="input-group input-append date" >
+                <input type="date" class="form-control datePicker" id="dateDebut" [(ngModel)]="event.startDate"
+                       (ngModelChange)="onChangeStartDate($event)"
+                       name="startDate"/>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  </div>
+          <!--Heure de début-->
+          <div class="form-group">
+            <label class="col-md-4 control-label">Heure de début :</label>
+            <div class="col-md-8 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                <div class="input-group input-append date" >
+                  <input type="time" class="form-control datePicker" id="heureDebut" [(ngModel)]="event.startTime"
+                         (ngModelChange)="onChangeStartTime($event)"
+                         name="startTime" />
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <div class="form-group">
-    <div class="form-group col-md-5">
-      <label>Date de début: </label>
-      <input type="datetime-local" class="form-control" id="dateDeDebut" [(ngModel)]="event.startDate" (ngModelChange)="onChangeStartDate($event)" name="startDate">
-    </div>
+          <!--Date de fin-->
+          <div class="form-group">
+            <label class="col-md-4 control-label">Date de fin :</label>
+            <div class="col-md-8 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                <div class="input-group input-append date ">
+                  <input type="date" class="form-control datePicker" [(ngModel)]="event.endDate"  (ngModelChange)="onChangeEndDate($event)" name="endDate"/>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <div class="form-group col-md-5">
-      <label>Date de fin: </label>
-      <input type="datetime-local" class="form-control" id="dateDeFin" [(ngModel)]="event.endDate"  (ngModelChange)="onChangeEndDate($event)" name="endDate">
-    </div>
-  </div>
+          <!--Heure de fin-->
+          <div class="form-group">
+            <label class="col-md-4 control-label">Heure de fin :</label>
+            <div class="col-md-8 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                <div class="input-group input-append date" >
+                  <input type="time" class="form-control datePicker" id="finDebut" [(ngModel)]="event.endTime"
+                         (ngModelChange)="onChangeEndTime($event)"
+                         name="endTime" />
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <div class="form-group">
-    <div class="form-group col-md-10">
-      <label>Descriptif: </label>
-      <textarea placeholder="(500 caracters)" id="descriptionEvent" class="form-control" name="description" [(ngModel)]="event.description"></textarea>
-    </div>
-  </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Description :</label>
+            <div class="col-md-8 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                <textarea placeholder="(500 caracters)" id="descriptionEvent" class="form-control" name="description" [(ngModel)]="event.description"></textarea>
+              </div>
+            </div>
+          </div>
 
-  <!-- button's management-->
-  <div class="form-group">
-    <div class="form-group col-md-5">
-      <button class="btn btn-success"> Valider</button>
-      <button class="btn btn-primary" (click)="event = {}">Effacer</button>
-      <a routerLink="/event" class="btn btn-danger">Annuler</a>
-    </div>
-  </div>
-</form>
 
-<div class="form-group">
-  <button class="btn btn-primary" (click)="lgModal.show()">Autre</button>
-</div>
-<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
-     role="dialog" aria-labelledby="dialog-sizes-name1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Création association</h4>
-        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+
+        </fieldset>
+          <div class="form-group">
+            <div class="col-lg-pull-3">
+              <div class="form-group col-md-5">
+                <button class="btn btn-success"> Valider</button>
+                <button class="btn btn-primary" (click)="event = {}">Effacer</button>
+                <a routerLink="/event" class="btn btn-danger">Annuler</a>
+              </div>
+            </div>
+            <div class="col-lg-pull-3 pull-right">
+              <div class="form-group col-md-10">
+                <button class="btn btn-primary" (click)="lgModal.show()">Ajouter nouvelle association</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+  <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+       role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="dialog-sizes-name1" class="modal-title pull-left">Création association</h4>
+          <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-add-association></app-add-association>
+        </div>
       </div>
-      <div class="modal-body">
-        <app-add-association></app-add-association>
-      </div>
     </div>
   </div>
-</div>
 
+</div>
+<!--<form name="form"  #f="ngForm" (ngSubmit)="save()" id="add-event-form" novalidate>-->
+  <!--<div class="form-group">-->
+      <!--<label class="col-md-4 control-label">Nom de l'évènement: </label>-->
+    <!--<div class="col-md-8 inputGroupContainer">-->
+      <!--<input type="text" class="form-control" placeholder="nom de l'évènement" [(ngModel)]="event.title" (ngModelChange)="onChangeTitle($event)" name="nameEvent">-->
+    <!--</div>-->
+
+    <!--<div class="form-group col-md-5">-->
+      <!--<label>Nom de l'association : </label>-->
+      <!--<select [(ngModel)]="selectedWorkout" name="selecedValue" class="form-control" (ngModelChange)="onChange($event)">-->
+        <!--<option value="? undefined:undefined ?"></option>-->
+        <!--<option *ngFor="let association of associations" id="association_{{association.id}}" [ngValue]="association">-->
+          <!--{{association.name}}-->
+        <!--</option>-->
+      <!--</select>-->
+    <!--</div>-->
+
+  <!--</div>-->
+
+  <!--<div class="form-group">-->
+    <!--<div class="form-group col-md-5">-->
+      <!--<label>Adresse: </label>-->
+      <!--<input type="text"class="form-control" placeholder="adresse" id="addressEvent" [(ngModel)]="event.address" (ngModelChange)="onChangeAddress($event)"name="address">-->
+    <!--</div>-->
+
+  <!--</div>-->
+
+  <!--<div class="form-group">-->
+    <!--<div class="form-group col-md-5">-->
+      <!--<div class="col-xs-12 col-12 col-md-4 form-group">-->
+      <!--<label>Date de début: </label>-->
+      <!--&lt;!&ndash;<input type="date" class="form-control" id="dateDeDebut" [(ngModel)]="event.startDate" (ngModelChange)="onChangeStartDate($event)" name="startDate">&ndash;&gt;-->
+        <!--<input type="text" placeholder="Datepicker"-->
+               <!--class="form-control" id="dateDeDebut"-->
+               <!--[(ngModel)]="event.startDate"-->
+               <!--(ngModelChange)="onChangeStartDate($event)"-->
+               <!--name="startDate"-->
+               <!--bsDatepicker>-->
+      <!--</div>-->
+      <!--<div class="col-xs-12 col-12 col-md-4 form-group">-->
+        <!--<label>Heure de début :</label>-->
+        <!--<timepicker [(ngModel)]="event.startTime"  [showMeridian]="false"></timepicker>-->
+        <!--&lt;!&ndash;<pre class="alert alert-info">Time is: {{event.startTime}}</pre>&ndash;&gt;-->
+      <!--</div>-->
+
+    <!--</div>-->
+
+    <!--<div class="form-group col-md-5">-->
+      <!--<label>Date de fin: </label>-->
+      <!--<input type="date" class="form-control" id="dateDeFin" [(ngModel)]="event.endDate"  (ngModelChange)="onChangeEndDate($event)" name="endDate">-->
+      <!--<label>Heure de fin :</label>-->
+      <!--<timepicker [(ngModel)]="event.endTime" [showMeridian]="false"></timepicker>-->
+      <!--<pre class="alert alert-info">Time is: {{event.endTime}}</pre>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="form-group">-->
+    <!--<div class="form-group col-md-10">-->
+      <!--<label>Descriptif: </label>-->
+      <!--<textarea placeholder="(500 caracters)" id="descriptionEvent" class="form-control" name="description" [(ngModel)]="event.description"></textarea>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--&lt;!&ndash; button's management&ndash;&gt;-->
+  <!--<div class="form-group">-->
+    <!--<div class="form-group col-md-5">-->
+      <!--<button class="btn btn-success"> Valider</button>-->
+      <!--<button class="btn btn-primary" (click)="event = {}">Effacer</button>-->
+      <!--<a routerLink="/event" class="btn btn-danger">Annuler</a>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</form>-->
+
+
+<script>
+    $(document).ready(function() {
+        $('.datePicker')
+            .datepicker({
+                format: 'mm/dd/yyyy'
+            });
+    });
+</script>
