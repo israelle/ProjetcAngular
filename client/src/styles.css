@@ -1,1 +1,6 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~ng2-toasty/bundles/style-bootstrap.css";
 /* You can add global styles to this file, and also import other style files */
+#toasty .toast {
+    width: 500px;
+}
