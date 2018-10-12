@@ -15,7 +15,7 @@ export class EventComponent implements OnInit {
 
   constructor(
      private eventSharedService: EventSharedService,
-     private spinner: NgxSpinnerService
+    // private spinner: NgxSpinnerService
   ) { }
 
       ngOnInit() {
@@ -28,15 +28,27 @@ export class EventComponent implements OnInit {
               .finally(() => this.isLoading = false)
               .subscribe(events => {
                   this.events = events;
+                  console.log(this.events);
                   if (this.isLoading) {
                       /** spinner starts on init */
-                      this.spinner.show();
+                   //   this.spinner.show();
                       setTimeout(() => {
                           /** spinner ends after 5 seconds */
-                          this.spinner.hide();
+                     //     this.spinner.hide();
                       }, 500);
                   }
+                  this.transform();
               });
+      }
+
+      transform() {
+          for (const event of this.events) {
+             const debut = new Date (event.startTime);
+
+             console.log(event.startTime, ' time: ', debut.toTimeString());
+             const fin = event.endTime;
+          }
+          console.log('today : ', new Date().toTimeString());
       }
 
       refresh() {
@@ -46,10 +58,10 @@ export class EventComponent implements OnInit {
                   this.events = events;
                   if (this.isLoading) {
                       /** spinner starts on init */
-                      this.spinner.show();
+                //      this.spinner.show();
                       setTimeout(() => {
                           /** spinner ends after 5 seconds */
-                          this.spinner.hide();
+               //           this.spinner.hide();
                       }, 500);
                   }
               });

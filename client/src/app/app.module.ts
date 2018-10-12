@@ -31,7 +31,6 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireStorageModule} from 'angularfire2/storage';
-import {NgxSpinnerModule} from 'ngx-spinner';
 import {HttpWrapperModule} from 'angular4-http-wrapper';
 import {Http, HttpModule, RequestOptions} from '@angular/http';
 import {ToastyModule} from 'ng2-toasty';
@@ -44,6 +43,8 @@ import {ImageUploadService} from '../service/imageUpload.service';
 import {DlDateTimePickerDateModule} from 'angular-bootstrap-datetimepicker';
 import {CalendarModule} from 'primeng/calendar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AuthService} from '../service/auth.service';
+// import {NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
     declarations: [
@@ -67,7 +68,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         BrowserModule,
         BrowserAnimationsModule,
         NgxCarouselModule,
-        NgxSpinnerModule,
         HttpWrapperModule,
         CarouselModule.forRoot(),
         TimepickerModule.forRoot(),
@@ -120,6 +120,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         UserService,
         HttpClientModule,
         HttpClient,
+        AuthService,
         ImageUploadService,
     provideAuth({
             headerName: 'Authorization',

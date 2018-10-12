@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {EventSharedService} from './event-shared.service';
-import {NgxSpinnerService} from 'ngx-spinner';
 import 'rxjs/add/operator/finally';
 import {NotificationType} from '../../shared/notification/notification-type.model';
 import {ModalDirective} from 'ngx-bootstrap';
@@ -34,9 +33,8 @@ export class EventModalComponent implements OnInit {
                 () => {
                     this.notificationService.addNotification(NotificationType.SUCCESS, 'L\'évènement a été supprimé.');
                     this.eventShareService.hideDeleteModal();
-                    this.eventShareService.refresh();
                 }
-            );
+            );   this.eventShareService.refresh();
     }
     isDeleteModalShown() {
         return this.eventShareService.isDeleteModalShown;

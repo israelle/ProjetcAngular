@@ -28,5 +28,8 @@
         <button class="btn btn-primary">Effacer</button>
         <a routerLink="/event/add" class="btn btn-danger">Annuler</a>
     </div>
+    <div *ngFor="let image of _getImages | async">
+        {{image.name}}
+    </div>
 </form>
 

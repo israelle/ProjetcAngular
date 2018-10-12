@@ -14,6 +14,7 @@ import {unitOfTime} from 'moment';
 import * as moment from 'moment';
 import {DateButton} from 'angular-bootstrap-datetimepicker';
 import 'moment/locale/fr';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class AddEventComponent implements OnInit {
   constructor(private eventSharedService: EventSharedService,
               private notificationService: NotificationService,
               private associationService: AssociationService,
+              private _router: Router,
               ) { }
   event: any = [];
     fileName = '';
@@ -76,7 +78,11 @@ export class AddEventComponent implements OnInit {
         this.event.endTime = event;
     }
     onChangeStartTime(event) {
-      this.event.startTime = event;
+        console.log('event: ', event);
+        const startTime = new Date(event);
+        console.log(startTime);
+      this.event.startTime = startTime.toTimeString();
+        console.log('this.event.startDate: ', this.event.startTime);
     }
 
     onChangeTitle(event) {
@@ -88,7 +94,8 @@ export class AddEventComponent implements OnInit {
       this.eventSharedService.postEvent(infoEvent)
           .subscribe(() => {
               // message de notification
-              this.notificationService.addNotification(NotificationType.SUCCESS, 'Nouvel évènement enregistré !! .');
+              this.notificationService.addNotification(NotificationType.SUCCESS, 'Nouvel évènement enregistré !!');
+               this._router.navigate( ['/event'] );
           });
    }
 }

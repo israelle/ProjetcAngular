@@ -16,8 +16,10 @@
                 <img class="img-circle" src="{{event.association.logo.path}}" alt="logo_association" width="140" height="140">
                 <h2>{{event.title}}</h2>
                 <h3>{{event.association.name}}</h3>
-                <p>Date de début : {{event.startDate}}</p>
-                <p>Date de fin : {{event.endDate}}</p>
+                <p>Date de début : {{event.startDate.toLocaleString()}}</p>
+                <p>Horaire de début : {{event.startTime}}</p>
+                <p>Date de fin : {{event.endDate.toLocaleString()}}</p>
+                <p>Horaire de fin : {{event.endTime}}</p>
                 <p>Adresse : {{event.address}}</p>
                 <p>{{event.description}}</p>
                 <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>

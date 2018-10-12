@@ -8,6 +8,8 @@ import {AuthHttp} from 'angular2-jwt';
 
 @Injectable()
 export class AssociationService {
+    newAssociation: any;
+
     constructor(
         private http: HttpClient,
         private apiRouter: ApiRouter,
@@ -33,5 +35,9 @@ export class AssociationService {
         const associationId = association.id;
         return this.authHttp.delete(this.apiRouter.generate('api_associations_delete_item'), associationId)
             .map(data => data.json());
+    }
+
+    saveBDD( newAssociation) {
+        this.newAssociation = newAssociation;
     }
 }

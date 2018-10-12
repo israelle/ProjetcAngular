@@ -15,19 +15,43 @@ export class LoginComponent implements OnInit {
     password: string;
     error: string;
     model: any = {};
+    users: any;
+    currentUser: any;
+    loading: any;
     constructor(
-        // private router: Router,
-              //   private eventSharedService: EventSharedService,
-                 private userService: UserService
+        private userService: UserService,
+        private authentificationService: AuthService,
+        private _router: Router) {}
 
-    ) {}
     ngOnInit(): void {
-        // this.eventSharedService.findAll()
-        //     .subscribe(data => {
-        //         console.log(data);
-        //     });
-       console.log('this.userService.findAll()');
-       console.log( this.userService.getUsers());
+        this.authentificationService.logout();
+    }
+
+    login() {
+        if (this.model.username !== '' && this.model.password !== '') {
+            this.loading = true;
+            this.findCurrentUser(this.model.username, this.model.password);
+            // this._router.navigate( ['/home'] );
+        }
+    }
+
+    findCurrentUser(username: string, password: string) {
+        this.userService.getUsers()
+            .subscribe(users => {
+                this.users = users;
+                for (const user of this.users) {
+                    if (user.username === username && user.password === password) {
+                        this.currentUser = user;
+                        this.loading = false;
+                    }
+                }
+                this.userService.currentUser = this.currentUser;
+                const u = this.authentificationService.login(this.userService.currentUser).subscribe(myuser => {
+                    console.log('user: ', myuser);
+                });
+                console.log(this.currentUser );
+            });
+
     }
 
 

@@ -11,30 +11,36 @@ import {environment} from '../environments/environment';
 
 @Injectable()
 export class UserService {
+    currentUser: any;
     constructor(
                  private http: HttpClient,
                  private apiRouter: ApiRouter,
                  public authHttp: AuthHttp) {
 
     }
-
-    // findAll() {
-    //     return this.authHttp
-    //         .get(this.url + '/users/')
-    //         .map(data => {data.json();
-    //         console.log('data');
-    //         console.log(data);
-    //         });
-    // }
+    /**
+     * found a user with his id
+     * @param user
+     */
+    findUser(user: any): Observable<any>  {
+        return this.authHttp.get(this.apiRouter.generate('api_users_get_item', {id: user.id}));
+    }
     getUsers(): Observable<any> {
-        return this.http.get(API_URL + '/users');
+        return this.authHttp.get(this.apiRouter.generate('api_users_get_collection'))
+            .map(data => data.json());
     }
 
-    // post() {
-    //     return this.authHttp.post()
-    // }
+
     postUsers(newUser: any): Observable<any> {
         return this.authHttp.post(this.apiRouter.generate('api_users_post_collection'), newUser)
             .map(data => data.json());
+    }
+
+    /**
+     * delete an user with is id
+     * @param user
+     */
+    deleteUser(user: any) {
+        return this.authHttp.delete(this.apiRouter.generate('api_users_delete_item', {id: user.id}));
     }
 }

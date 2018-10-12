@@ -2,25 +2,30 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ImageUploadModel } from '../app/image/imageUpload-model';
-import {Observable} from 'rxjs/Observable';
 import {FirebaseListObservable} from 'angularfire2/database-deprecated';
+
 
 
 @Injectable()
 export class ImageUploadService {
-    get images(): FirebaseListObservable<any[]> {
-        return this._images;
-    }
-
-    set images(value: FirebaseListObservable<any[]>) {
-        this._images = value;
-    }
-
     private basePath = '/uploads';
     private _images: FirebaseListObservable<any[]>;
 
     constructor( private db: AngularFireDatabase) {
         // this._images = db.list('uploads');
+    }
+
+    // get images(): FirebaseListObservable<any[]> {
+    //     return this._images;
+    // }
+    //
+    // set images(value: FirebaseListObservable<any[]>) {
+    //     this._images = value;
+    // }
+
+    private saveFileData(fileUpload: ImageUploadModel) {
+        this.db.list(`${this.basePath}/`).push(fileUpload);
+        console.log('fileUpload', fileUpload);
     }
 
     pushFileToStorage(fileUpload: ImageUploadModel, progress: {percentage: number}) {
@@ -39,25 +44,27 @@ export class ImageUploadService {
             },
             () => {
                 // success
-                uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                    fileUpload.url = downloadURL;
-                    console.log('fileUpload', fileUpload);
-                    console.log('fileUpload.url', fileUpload.url);
-                    });
-                fileUpload.name = fileUpload.file.name;
-                this.saveFileData(fileUpload);
-            }
-        );
-    }
+                 uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
 
+                    // console.log('fileUpload', fileUpload);
+                    // console.log('fileUpload.url:', fileUpload.url);
+                    // this.associationService.newAssociation.logo.path = fileUpload.url;
+                     if (progress.percentage === 100) {
+                         fileUpload.url = downloadURL;
+                         fileUpload.name = fileUpload.file.name;
+                         console.log('fileUpload: ', fileUpload);
+                         this.saveFileData(fileUpload);
+                     }
+                 });
+
+            });
+    }
 
     getImages(listPath) {
         return this.db.list(listPath).valueChanges();
     }
 
 
-    private saveFileData(fileUpload: ImageUploadModel) {
-        this.db.list(`${this.basePath}/`).push(fileUpload);
-    }
+
 }
 
