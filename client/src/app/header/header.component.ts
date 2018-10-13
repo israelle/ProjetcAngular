@@ -23,13 +23,9 @@ export class HeaderComponent implements OnInit {
   }
 
   updateProfil() {
-    if (this.profilName === '' || this.profilName === 'undefined') {
-      this.profilName = 'Profile';
-    } else {
       this.profilName = this.authentificationservice.currentUser.username;
-    }
       console.log(  this.authentificationservice.currentUser);
-
+      console.log('local: ', localStorage.getItem('currentUser'));
   }
 
 }
