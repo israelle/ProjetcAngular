@@ -1,50 +1,62 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
 import { PresentationComponent } from './presentation/presentation.component';
 import { EventComponent} from './event/event.component';
-import {LoginService} from '../service/login.service';
-import {EventService} from '../service/event.service';
-import {PresentationService} from '../service/presentation.service';
-import {LoginComponent} from './login/login.component';
+import { LoginService } from '../service/login.service';
+import { EventService } from '../service/event.service';
+import { PresentationService } from '../service/presentation.service';
+import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
-import {RouterModule, Route} from '@angular/router';
+import { RouterModule, Route} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import {NgxCarouselModule} from 'ngx-carousel';
-import {AlertModule, BsDatepickerModule, CarouselModule, ModalModule, TimepickerModule} from 'ngx-bootstrap';
+import { NgxCarouselModule } from 'ngx-carousel';
+import { AlertModule, BsDatepickerModule, CarouselModule, ModalModule, TimepickerModule} from 'ngx-bootstrap';
 import { AddEventComponent } from './add-event/add-event.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ImageComponent } from './image/image.component';
 import { ImageFilterPipe } from '../shared/ImageFilterPipe';
 import { ImageService } from '../service/image.service';
 import { ImageDetailComponent } from './image/image-detail.component';
-import {EventSharedService} from './event/event-shared.service';
-import {ApiRouter} from '../shared/api-routes/api-router.service';
-import {UserService} from '../service/user.service';
-import {AuthConfig, AuthHttp, provideAuth} from 'angular2-jwt';
-import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import {AngularFireDatabaseModule} from 'angularfire2/database';
-import {environment} from '../environments/environment';
-import {AngularFireModule} from 'angularfire2';
-import {AngularFireStorageModule} from 'angularfire2/storage';
-import {HttpWrapperModule} from 'angular4-http-wrapper';
-import {Http, HttpModule, RequestOptions} from '@angular/http';
-import {ToastyModule} from 'ng2-toasty';
-import {NotificationComponent} from '../shared/notification/notification.component';
-import {NotificationService} from '../shared/notification/notification.service';
-import {EventModalComponent} from './event/event-modal.component';
-import {AssociationService} from '../service/association.service';
-import {AddAssociationComponent} from './add-association/add-association.component';
-import {ImageUploadService} from '../service/imageUpload.service';
-import {DlDateTimePickerDateModule} from 'angular-bootstrap-datetimepicker';
-import {CalendarModule} from 'primeng/calendar';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AuthService} from '../service/auth.service';
-// import {NgxSpinnerModule} from 'ngx-spinner';
+import { EventSharedService } from './event/event-shared.service';
+import { ApiRouter } from '../shared/api-routes/api-router.service';
+import { UserService } from '../service/user.service';
+import { provideAuth } from 'angular2-jwt';
+import {HttpClient, HttpClientModule } from '@angular/common/http';
+import {FormsModule } from '@angular/forms';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { HttpWrapperModule } from 'angular4-http-wrapper';
+import { Http, HttpModule } from '@angular/http';
+import { ToastyModule } from 'ng2-toasty';
+import { NotificationComponent } from '../shared/notification/notification.component';
+import { NotificationService } from '../shared/notification/notification.service';
+import { EventModalComponent } from './event/event-modal.component';
+import { AssociationService } from '../service/association.service';
+import { AddAssociationComponent } from './add-association/add-association.component';
+import { ImageUploadService } from '../service/imageUpload.service';
+import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
+import { CalendarModule } from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProfileComponent } from './profile/profile.component';
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+import { JoinUsComponent } from './join-us/join-us.component';
+
+
+const config = new AuthServiceConfig([
+    {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider('377006560054-o7c3ampae1srchmo4mk6o18u2jvsch4t.apps.googleusercontent.com')
+    },
+]);
+
+export function provideConfig() {
+    return config;
+}
 
 @NgModule({
     declarations: [
@@ -63,6 +75,8 @@ import {AuthService} from '../service/auth.service';
         ImageDetailComponent,
         NotificationComponent,
         EventModalComponent,
+        ProfileComponent,
+        JoinUsComponent,
     ],
     imports: [
         BrowserModule,
@@ -83,6 +97,7 @@ import {AuthService} from '../service/auth.service';
         AngularFireStorageModule,
         ModalModule.forRoot(),
         DlDateTimePickerDateModule,
+        SocialLoginModule,
         RouterModule.forRoot([
             {path: '',
                 component: HomeComponent,
@@ -105,6 +120,8 @@ import {AuthService} from '../service/auth.service';
             {path: 'gallery',
                 component: GalleryComponent},
             { path: 'image/:id', component: ImageDetailComponent },
+            { path: 'profile/:id', component: ProfileComponent },
+            { path: 'joinUs', component: JoinUsComponent },
         ])
     ],
     providers: [
@@ -120,7 +137,6 @@ import {AuthService} from '../service/auth.service';
         UserService,
         HttpClientModule,
         HttpClient,
-        AuthService,
         ImageUploadService,
     provideAuth({
             headerName: 'Authorization',
@@ -130,6 +146,10 @@ import {AuthService} from '../service/auth.service';
             globalHeaders: [{ 'Content-Type': 'application/json' }],
             noJwtError: true
         }),
+        {
+            provide: AuthServiceConfig,
+            useFactory: provideConfig
+        },
     ],
     bootstrap: [AppComponent]
 })

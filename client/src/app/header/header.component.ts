@@ -11,21 +11,18 @@ export class HeaderComponent implements OnInit {
      profilName: string;
 
   constructor(private userService: UserService,
-              private authentificationservice: AuthService) {
+             ) {
   }
 
   users: any;
   currentUser;
 
   ngOnInit() {
-      console.log(  this.authentificationservice.currentUser);
       this.profilName = 'Profile';
   }
 
   updateProfil() {
-      this.profilName = this.authentificationservice.currentUser.username;
-      console.log(  this.authentificationservice.currentUser);
-      console.log('local: ', localStorage.getItem('currentUser'));
+     // console.log('local: ', localStorage.getItem('currentUser'));
   }
 
 }
