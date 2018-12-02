@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {UserService} from '../../service/user.service';
-import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser} from 'angularx-social-login';
-import {LoginService} from '../../service/login.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../../service/user.service';
+import { LoginService } from '../../service/login.service';
+import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 
 
 @Component({
@@ -64,9 +64,8 @@ export class LoginComponent implements OnInit {
     }
 
     signInWithGoogle(): void {
+        console.log('test');
         this.authentificationService.signIn(GoogleLoginProvider.PROVIDER_ID);
-        if (this.loggedIn) {
-        }
     }
 
     signInWithFB(): void {
