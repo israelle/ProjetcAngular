@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../service/auth.service';
 import {Router} from '@angular/router';
+import {AuthService} from 'angularx-social-login';
 
 @Component({
   selector: 'app-profile',
@@ -15,8 +15,6 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.authentificationService.currentUser);
-    this.user = this.authentificationService.currentUser;
     if (! this.user) {
         this._router.navigate( ['/login'] );
     }

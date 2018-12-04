@@ -34,15 +34,15 @@
       </form>
       <ul class="navbar-form navbar-left" >
           <li class="nav-item dropdown">
-              <a routerLink="/joinUs">Contactez-nous</a>
+              <a routerLink="/joinUs" class="dropdown-toggle " data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">Nous joindre</a>
           </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <li class="nav-item dropdown">
               <a routerLink="/login" class="dropdown-toggle " data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user"></i>  <span (ngModel)="profilName" *ngIf="profilName !== '' || profilName !== 'undefined'" (click)="updateProfil()" >{{profilName}}</span><span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                      <li class=" dropdown">
-                          <a class="dropdown-item waves-effect waves-light" *ngIf="currentUser" [routerLink] ="['/profile', currentUser.id]">My account</a>
+                      <li class=" dropdown" routerLinkActive="active current">
+                          <!--<a class="dropdown-item waves-effect waves-light" *ngIf="currentUser" [routerLink] ="['/profile', currentUser.get]">My account</a>-->
 
                       </li>
                       <li class=" dropdown" routerLinkActive="active current">

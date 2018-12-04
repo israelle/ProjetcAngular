@@ -12,18 +12,19 @@ export class LoginService {
     API_URL = 'http://localhost:8000';
     loggedIn: boolean;
     user: SocialUser;
-    constructor(private http: HttpClient,
-                private router: Router,
-                // private  authService: AuthService,
-                private apiRouter: ApiRouter,
-                public authHttp: AuthHttp) {
+    constructor(private _http: HttpClient,
+                private _router: Router,
+                private  _authService: AuthService,
+                private _apiRouter: ApiRouter,
+                public _authHttp: AuthHttp) {
 
-        // this.authService.authState.subscribe((user) => {
-        //     this.user = user;
-        //     this.loggedIn = (user != null);
-        //     this.setUser(user);
-        //     this.router.navigate( ['/home']);
-        // });
+        this._authService.authState.subscribe((user) => {
+            this.user = user;
+            this.loggedIn = (user != null);
+            this.setUser(user);
+            console.log('loginService: ', this.user);
+            this._router.navigate( ['/home']);
+        });
     }
 
     setUser(userLogin: SocialUser) {
@@ -31,14 +32,38 @@ export class LoginService {
     }
 
     getUsersDatabase(): Observable<any> {
-        return this.http.get(this.API_URL + '/users');
+        return this._http.get(this.API_URL + '/users');
     }
 
     postUserGoogleDataBase(user): Observable<any> {
-        return this.http.post(this.API_URL + '/user', {nomutilisateur: user.name});
+        return this._http.post(this.API_URL + '/user', {nomutilisateur: user.name});
     }
     getUser(): SocialUser {
         return this.user;
     }
 
+
+    signOut(): void {
+        this._authService.signOut();
+    }
+
+    getHttp(): HttpClient {
+        return this._http;
+    }
+
+    getRouter(): Router {
+        return this._router;
+    }
+
+    getAuthService(): AuthService {
+        return this._authService;
+    }
+
+    getApiRouter(): ApiRouter {
+        return this._apiRouter;
+    }
+
+    getAuthHttp(): AuthHttp {
+        return this._authHttp;
+    }
 }

@@ -45,6 +45,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { JoinUsComponent } from './join-us/join-us.component';
+import {AgmCoreModule} from '@agm/core';
 
 
 const config = new AuthServiceConfig([
@@ -53,6 +54,19 @@ const config = new AuthServiceConfig([
         provider: new GoogleLoginProvider('377006560054-o7c3ampae1srchmo4mk6o18u2jvsch4t.apps.googleusercontent.com')
     },
 ]);
+const routes = [
+    {path: '', component: HomeComponent},
+    {path: 'home', component: HomeComponent},
+    {path : 'login', component: LoginComponent},
+    {path : 'presentation', component: PresentationComponent },
+    {path: 'register', component: RegisterComponent },
+    {path: 'event', component: EventComponent},
+    {path: 'event/add', component: AddEventComponent},
+    {path: 'gallery', component: GalleryComponent},
+    { path: 'image/:id', component: ImageDetailComponent },
+    { path: 'profile/:id', component: ProfileComponent },
+    { path: 'joinUs', component: JoinUsComponent },
+    ];
 
 export function provideConfig() {
     return config;
@@ -98,31 +112,10 @@ export function provideConfig() {
         ModalModule.forRoot(),
         DlDateTimePickerDateModule,
         SocialLoginModule,
-        RouterModule.forRoot([
-            {path: '',
-                component: HomeComponent,
-            },
-            {path: 'home',
-                component: HomeComponent},
-            {path : 'login',
-                component: LoginComponent,
-            },
-            {path : 'presentation',
-                component: PresentationComponent,
-            },
-            {path: 'register',
-                component: RegisterComponent,
-            },
-            {path: 'event',
-                component: EventComponent},
-            {path: 'event/add',
-                component: AddEventComponent},
-            {path: 'gallery',
-                component: GalleryComponent},
-            { path: 'image/:id', component: ImageDetailComponent },
-            { path: 'profile/:id', component: ProfileComponent },
-            { path: 'joinUs', component: JoinUsComponent },
-        ])
+        RouterModule.forRoot(routes),
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyAZiNVLRX6HTsJ-0hFcsp3nzuMODU2o2ss'
+        })
     ],
     providers: [
         LoginService,
