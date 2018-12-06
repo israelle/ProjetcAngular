@@ -1,10 +1,15 @@
+.mapCenter{
+   margin: 0px auto;
+    width: 100px;
+}
 agm-map {
     height: 300px;
+    width: 900px;
 }
 
-.centerStyl{
+.centerStyl {
     text-align: center;
-    color: maroon;
+    color: #94260E;
 }
 
 fieldset.scheduler-border {
@@ -22,4 +27,16 @@ legend.scheduler-border {
     width:auto;
     padding:0 10px;
     border-bottom:none;
+}
+
+.textGreen{
+    color: green;
+}
+
+.textMaroon{
+    color: #94260E;
+}
+
+.backgroundForm{
+    background-color: #BCF0A3;
 }
