@@ -1,6 +1,5 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnChanges} from '@angular/core';
 import {ImageService} from '../../service/image.service';
-import {ImageFilterPipe} from '../../shared/ImageFilterPipe';
 
 @Component({
   selector: 'app-gallery',
@@ -22,8 +21,4 @@ export class GalleryComponent implements OnChanges  {
     ngOnChanges() {
         this.visibleImages = this.imageService.getImages();
     }
-    openModal() {
-        this.display='block';
-    }
-
 }

@@ -12,4 +12,9 @@ li { display:inline;}
 
 h1, h2{
     margin-bottom: 20px;
+    text-align: center;
+}
+
+.centerButtons {
+    padding:0; width:1200px; margin:20px auto
 }
