@@ -2,16 +2,17 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 
-<nav class="navbar navbar-default navbar-inverse" role="navigation">
+<nav class="navbar " role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-
-      <a class="navbar-brand" routerLinkActive="active current" routerLink="/home">Accueil</a>
-    </div>
+    <!--<div class="navbar-header">-->
+        <ul class="nav navbar-nav">
+            <li routerLinkActive="active current"><a class="navbar-brand" routerLink="/home">Accueil</a></li>
+        </ul>
+    <!--</div>-->
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse nav" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li routerLinkActive="active current"><a routerLink="/presentation">Présentation</a></li>
         <li><a href="http://bamboukreyol.blogspot.fr/">Bambou Kréyol</a></li>
@@ -32,7 +33,7 @@
         </div>
         <button type="submit" class="btn btn-default btn-sm">Rechercher</button>
       </form>
-      <ul class="navbar-form navbar-left" >
+      <ul class="navbar-nav navbar-left" >
           <li class="nav-item dropdown">
               <a routerLink="/joinUs" class="dropdown-toggle " data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">Nous joindre</a>
           </li>

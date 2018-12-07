@@ -1,6 +1,5 @@
 .mapCenter{
-   margin: 0px auto;
-    width: 100px;
+    width: 64%;
 }
 agm-map {
     height: 300px;

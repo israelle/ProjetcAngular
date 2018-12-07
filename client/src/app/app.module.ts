@@ -46,6 +46,7 @@ import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { JoinUsComponent } from './join-us/join-us.component';
 import {AgmCoreModule} from '@agm/core';
+import { FooterComponent } from './footer/footer.component';
 
 
 const config = new AuthServiceConfig([
@@ -91,6 +92,7 @@ export function provideConfig() {
         EventModalComponent,
         ProfileComponent,
         JoinUsComponent,
+        FooterComponent,
     ],
     imports: [
         BrowserModule,

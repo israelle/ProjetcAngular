@@ -15,7 +15,6 @@
     /*width:120px;*/
      text-align: center;
     /*text-decoration:none;*/
-    padding:5px;
 }
  li a:hover {
     color:brown;
@@ -31,3 +30,7 @@
  li:hover ul li {
     float:none;
 }
+
+ nav {
+     background-color: black;
+ }

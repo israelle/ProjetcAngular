@@ -1,7 +1,7 @@
 <h1 class="centerStyl">{{ title }}</h1>
 
 <!--google map-->
-<div class="mapCenter">
+<div class="container mapCenter">
   <agm-map [latitude]="lat" [longitude]="lng">
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   </agm-map>
@@ -43,7 +43,7 @@
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label textMaroon" for="exampleCheck1">RGPD*(mettre une petite phrase)</label>
     </div>
-    <button type="submit" class="btn btn-primary">Envoyer</button>
+    <button type="submit" class="btn btn-success">Envoyer</button>
   </fieldset>
 
 </form>
