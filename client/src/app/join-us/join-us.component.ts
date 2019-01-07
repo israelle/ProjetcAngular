@@ -14,4 +14,9 @@ export class JoinUsComponent implements OnInit {
   ngOnInit() {
   }
 
+  sendMail() {
+      console.log('message envoyé');
+    }
 }
+
+

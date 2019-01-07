@@ -47,6 +47,7 @@ import { GoogleLoginProvider } from 'angularx-social-login';
 import { JoinUsComponent } from './join-us/join-us.component';
 import {AgmCoreModule} from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
+import {MailService} from '../service/mail.service';
 
 
 const config = new AuthServiceConfig([
@@ -133,6 +134,7 @@ export function provideConfig() {
         HttpClientModule,
         HttpClient,
         ImageUploadService,
+        MailService,
     provideAuth({
             headerName: 'Authorization',
             headerPrefix: 'bearer',

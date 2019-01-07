@@ -40,10 +40,11 @@
       <textarea  class="form-control" id="textareaMessage" placeholder="Password"></textarea>
     </div>
     <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label textMaroon" for="exampleCheck1">RGPD*(mettre une petite phrase)</label>
+
+      <label class="form-check-label " for="exampleCheck1"><p class="textMaroon"> <input type="checkbox" class="form-check-input" id="exampleCheck1">*En soumettant ce formulaire, j'accepte que les informations saisies
+        soient exploitées dans le cadre de la demande de démo et de la relation commerciale qui peut en découler</p></label>
     </div>
-    <button type="submit" class="btn btn-success">Envoyer</button>
+    <button type="submit" class="btn btn-success" (click)="sendMail()">Envoyer</button>
   </fieldset>
 
 </form>
