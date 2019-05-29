@@ -19,28 +19,32 @@ export class EventComponent implements OnInit {
   ) { }
 
       ngOnInit() {
-       this.seeEvent();
+      // this.seeEvent();
+          console.log('getEvent: ' + this.eventSharedService.getEvent());
+          this.test();
       }
 
-      seeEvent() {
-          this.isLoading = true;
-          this.eventSharedService.findEvents()
-              .finally(() => this.isLoading = false)
-              .subscribe(events => {
-                  this.events = events;
-                  console.log(this.events);
-                  if (this.isLoading) {
-                      /** spinner starts on init */
-                   //   this.spinner.show();
-                      setTimeout(() => {
-                          /** spinner ends after 5 seconds */
-                     //     this.spinner.hide();
-                      }, 500);
-                  }
-                  this.transform();
-              });
-      }
-
+      // seeEvent() {
+      //     this.isLoading = true;
+      //     this.eventSharedService.findEvents()
+      //         // .finally(() => this.isLoading = false)
+      //         .subscribe(events => {
+      //             this.events = events;
+      //             console.log(this.events);
+      //             if (this.isLoading) {
+      //                 /** spinner starts on init */
+      //              //   this.spinner.show();
+      //                 setTimeout(() => {
+      //                     /** spinner ends after 5 seconds */
+      //                //     this.spinner.hide();
+      //                 }, 500);
+      //             }
+      //             this.transform();
+      //         });
+      // }
+    test () {
+        console.log('getEvent: ' + this.eventSharedService.getEvent());
+    }
       transform() {
           for (const event of this.events) {
              const debut = new Date (event.startTime);
@@ -51,30 +55,30 @@ export class EventComponent implements OnInit {
           console.log('today : ', new Date().toTimeString());
       }
 
-      refresh() {
-          this.eventSharedService.findEvents()
-              .finally(() => this.isLoading = false)
-              .subscribe(events => {
-                  this.events = events;
-                  if (this.isLoading) {
-                      /** spinner starts on init */
-                //      this.spinner.show();
-                      setTimeout(() => {
-                          /** spinner ends after 5 seconds */
-               //           this.spinner.hide();
-                      }, 500);
-                  }
-              });
-      }
+      // refresh() {
+      //     this.eventSharedService.findEvents()
+      //         .finally(() => this.isLoading = false)
+      //         .subscribe(events => {
+      //             this.events = events;
+      //             if (this.isLoading) {
+      //                 /** spinner starts on init */
+      //           //      this.spinner.show();
+      //                 setTimeout(() => {
+      //                     /** spinner ends after 5 seconds */
+      //          //           this.spinner.hide();
+      //                 }, 500);
+      //             }
+      //         });
+      // }
 
-      deleteEvent(event) {
-          this.eventSharedService.deleteEvent(event)
-              .subscribe(() => {
-                      // message de notification
-                  this.refresh();
-                  },
-              );
-      }
+      // deleteEvent(event) {
+      //     this.eventSharedService.deleteEvent(event)
+      //         .subscribe(() => {
+      //                 // message de notification
+      //             this.refresh();
+      //             },
+      //         );
+      // }
 
     isAnyModalShown() {
         return this.eventSharedService.isDeleteModalShown || this.eventSharedService.isEditModalShown;

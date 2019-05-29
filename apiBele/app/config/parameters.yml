@@ -1,16 +1,12 @@
 # This file is auto-generated during the composer install
 parameters:
     database_host: 127.0.0.1
-    database_port: 3307
+    database_port: 3306
     database_name: db_bele_symfony
     database_user: root
     database_password: null
-    mail: sendmail
     mailer_host: 127.0.0.1
     mailer_user: israelle.lagier972@gmail.com
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
-#    jwt_private_key_path: %kernel.root_dir%/var/jwt/private.pem   # ssh private key path
-#    jwt_public_key_path:  %kernel.root_dir%/var/jwt/public.pem    # ssh public key path
-#    jwt_key_pass_phrase:  ''                                      # ssh key pass phrase
-#    jwt_token_ttl:        86400
+    mailer_transport: smtp

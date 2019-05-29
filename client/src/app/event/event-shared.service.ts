@@ -13,6 +13,7 @@ export class EventSharedService {
     ) {}
 
     findEvents() {
+        console.log('eventservice' + this.eventService.findEvents());
         return this.eventService.findEvents();
     }
     postEvent(event) {
@@ -26,6 +27,9 @@ export class EventSharedService {
         return this.eventService.putEvent(eventId);
     }
 
+    getEvent() {
+        this.eventService.getEvent();
+    }
     refresh() {
         this.eventService.getEvent();
     }

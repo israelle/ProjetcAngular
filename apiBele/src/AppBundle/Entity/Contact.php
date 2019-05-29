@@ -54,6 +54,12 @@ class Contact {
     private $created_at;
 
     /**
+     * @var string
+     * @ORM\Column(name="objet", type="string")
+     */
+    private $subject;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -67,6 +73,22 @@ class Contact {
     public function setId($id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubject(): string
+    {
+        return $this->subject;
+    }
+
+    /**
+     * @param string $subject
+     */
+    public function setSubject(string $subject): void
+    {
+        $this->subject = $subject;
     }
 
     /**

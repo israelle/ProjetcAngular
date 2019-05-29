@@ -25,10 +25,10 @@ import { UserService } from '../service/user.service';
 import { provideAuth } from 'angular2-jwt';
 import {HttpClient, HttpClientModule } from '@angular/common/http';
 import {FormsModule } from '@angular/forms';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+// import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireStorageModule } from 'angularfire2/storage';
+// import { AngularFireModule } from 'angularfire2';
+// import { AngularFireStorageModule } from 'angularfire2/storage';
 import { HttpWrapperModule } from 'angular4-http-wrapper';
 import { Http, HttpModule } from '@angular/http';
 import { ToastyModule } from 'ng2-toasty';
@@ -109,9 +109,9 @@ export function provideConfig() {
         CalendarModule,
         HttpClientModule,
         HttpModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule, // for database
-        AngularFireStorageModule,
+        // AngularFireModule.initializeApp(environment.firebase),
+        // AngularFireDatabaseModule, // for database
+        // AngularFireStorageModule,
         ModalModule.forRoot(),
         DlDateTimePickerDateModule,
         SocialLoginModule,

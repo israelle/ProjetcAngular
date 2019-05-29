@@ -5,6 +5,7 @@ app:
 api:
   resource: '.'
   type:     'api_platform'
+  prefix: '/'
 
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"

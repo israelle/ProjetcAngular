@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-import { AngularFireDatabase } from 'angularfire2/database';
+// import { AngularFireDatabase } from 'angularfire2/database';
 import { ImageUploadModel } from '../app/image/imageUpload-model';
-import {FirebaseListObservable} from 'angularfire2/database-deprecated';
+// import {FirebaseListObservable} from 'angularfire2/database-deprecated';
 
 
 
 @Injectable()
 export class ImageUploadService {
     private basePath = '/uploads';
-    private _images: FirebaseListObservable<any[]>;
+  //  private _images: FirebaseListObservable<any[]>;
 
-    constructor( private db: AngularFireDatabase) {
-        // this._images = db.list('uploads');
-    }
+    // constructor( private db: AngularFireDatabase) {
+    //     // this._images = db.list('uploads');
+    // }
 
     // get images(): FirebaseListObservable<any[]> {
     //     return this._images;
@@ -24,7 +24,7 @@ export class ImageUploadService {
     // }
 
     private saveFileData(fileUpload: ImageUploadModel) {
-        this.db.list(`${this.basePath}/`).push(fileUpload);
+      //  this.db.list(`${this.basePath}/`).push(fileUpload);
         console.log('fileUpload', fileUpload);
     }
 
@@ -61,7 +61,7 @@ export class ImageUploadService {
     }
 
     getImages(listPath) {
-        return this.db.list(listPath).valueChanges();
+     //   return this.db.list(listPath).valueChanges();
     }
 
 

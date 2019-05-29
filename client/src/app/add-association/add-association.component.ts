@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {AssociationService} from '../../service/association.service';
 import {NotificationService} from '../../shared/notification/notification.service';
 import {NotificationType} from '../../shared/notification/notification-type.model';
-import {ImageUploadService} from '../../service/imageUpload.service';
-import {ImageUploadModel} from '../image/imageUpload-model';
+// import {ImageUploadService} from '../../service/imageUpload.service';
+// import {ImageUploadModel} from '../image/imageUpload-model';
 import {Observable} from 'rxjs/Observable';
-import {AngularFireDatabase} from 'angularfire2/database';
+ // import {AngularFireDatabase} from 'angularfire2/database';
 
 @Component({
     selector: 'app-add-association',
@@ -18,14 +18,14 @@ export class AddAssociationComponent implements OnInit {
     selectedFile: any;
     selectedFiles: FileList;
     _getImages: Observable<any[]>;
-    currentFileUpload: ImageUploadModel;
+   // currentFileUpload: ImageUploadModel;
     progress: {percentage: number} = {percentage: 0};
 
     constructor(
         private associationService: AssociationService,
         private notificationService: NotificationService,
-        private imageUploadService: ImageUploadService,
-        private db: AngularFireDatabase
+      //  private imageUploadService: ImageUploadService,
+      //  private db: AngularFireDatabase
     ) {}
     ngOnInit() {
         this.association.logo = {path: ''};
@@ -44,9 +44,9 @@ export class AddAssociationComponent implements OnInit {
         this.selectedFile = event.target.files[0];
     }
 
-    getImages(listPath): Observable<any[]> {
-        return this.db.list(listPath).valueChanges();
-    }
+    // getImages(listPath): Observable<any[]> {
+    //     return this.db.list(listPath).valueChanges();
+    // }
     save() {
       //  this.upload();
        const association =  this.association;
@@ -66,12 +66,12 @@ export class AddAssociationComponent implements OnInit {
     }
 
     upload() {
-        const file = this.selectedFiles.item(0);
-        this.currentFileUpload = new ImageUploadModel(file);
-        this.imageUploadService.pushFileToStorage(this.currentFileUpload, this.progress);
-
-        this.association.logo.path = this.currentFileUpload.getUrl();
-        this.association.logo.name = this.currentFileUpload.file.name;
+        // const file = this.selectedFiles.item(0);
+        // this.currentFileUpload = new ImageUploadModel(file);
+        // this.imageUploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+        //
+        // this.association.logo.path = this.currentFileUpload.getUrl();
+        // this.association.logo.name = this.currentFileUpload.file.name;
         // récupérer le lien lorsque la barre des tache a fini
 
     }

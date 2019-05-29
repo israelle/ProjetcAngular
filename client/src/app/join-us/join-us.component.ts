@@ -16,6 +16,17 @@ export class JoinUsComponent implements OnInit {
 
   sendMail() {
       console.log('message envoyé');
+       //     const association =  this.association;
+       // this.associationService.newAssociation = association;
+       // if (this.upload()) {
+       //     this.associationService.save(association)
+       //         .subscribe(
+       //             () => {
+       //                 // message de notification
+       //                 this.notificationService.addNotification(NotificationType.SUCCESS, 'Nouvelle association enregistrée !! .');
+       //             });
+       // }
+       //
     }
 }
 
