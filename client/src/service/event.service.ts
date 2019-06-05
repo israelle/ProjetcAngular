@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import {HttpClient } from '@angular/common/http';
 import {ApiRouter} from '../shared/api-routes/api-router.service';
 import {AuthHttp} from 'angular2-jwt';
+
+import {Observable} from 'rxjs/Observable';
+import { filter, map, catchError } from 'rxjs/operators';
 
 
 const API_URL = 'http://127.0.0.1:8000';
@@ -16,7 +18,7 @@ export class EventService {
 
     }
 
-    getEvent() {
+    getEvent(): Observable<any> {
         return this.authHttp.get(this.apiRouter.generate('api_events_get_collection'))
                  ;
     }
