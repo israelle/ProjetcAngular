@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../service/user.service';
 import {AuthService} from '../../service/auth.service';
 import {LoginService} from '../../service/login.service';
-import {SocialUser} from 'angularx-social-login';
+// import {SocialUser} from 'angularx-social-login';
 
 @Component({
   selector: 'app-header',

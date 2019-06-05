@@ -22,16 +22,9 @@ import { ImageDetailComponent } from './image/image-detail.component';
 import { EventSharedService } from './event/event-shared.service';
 import { ApiRouter } from '../shared/api-routes/api-router.service';
 import { UserService } from '../service/user.service';
-import { provideAuth } from 'angular2-jwt';
-import {HttpClient, HttpClientModule } from '@angular/common/http';
 import {FormsModule } from '@angular/forms';
-// import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { environment } from '../environments/environment';
-// import { AngularFireModule } from 'angularfire2';
-// import { AngularFireStorageModule } from 'angularfire2/storage';
 import { HttpWrapperModule } from 'angular4-http-wrapper';
-import { Http, HttpModule } from '@angular/http';
-import { ToastyModule } from 'ng2-toasty';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { NotificationComponent } from '../shared/notification/notification.component';
 import { NotificationService } from '../shared/notification/notification.service';
 import { EventModalComponent } from './event/event-modal.component';
@@ -42,20 +35,21 @@ import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './profile/profile.component';
-import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider } from 'angularx-social-login';
+// import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+// import { GoogleLoginProvider } from 'angularx-social-login';
 import { JoinUsComponent } from './join-us/join-us.component';
 import {AgmCoreModule} from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
-import {MailService} from '../service/mail.service';
+import { MailService } from '../service/mail.service';
+import {ToastrModule} from 'ngx-toastr';
 
 
-const config = new AuthServiceConfig([
-    {
-        id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider('377006560054-o7c3ampae1srchmo4mk6o18u2jvsch4t.apps.googleusercontent.com')
-    },
-]);
+// const config = new AuthServiceConfig([
+//     {
+//         id: GoogleLoginProvider.PROVIDER_ID,
+//         provider: new GoogleLoginProvider('377006560054-o7c3ampae1srchmo4mk6o18u2jvsch4t.apps.googleusercontent.com')
+//     },
+// ]);
 const routes = [
     {path: '', component: HomeComponent},
     {path: 'home', component: HomeComponent},
@@ -71,7 +65,7 @@ const routes = [
     ];
 
 export function provideConfig() {
-    return config;
+  //  return config;
 }
 
 @NgModule({
@@ -105,16 +99,15 @@ export function provideConfig() {
         BsDatepickerModule.forRoot(),
         AlertModule,
         FormsModule,
-        ToastyModule.forRoot(),
         CalendarModule,
         HttpClientModule,
-        HttpModule,
+        ToastrModule,
         // AngularFireModule.initializeApp(environment.firebase),
         // AngularFireDatabaseModule, // for database
         // AngularFireStorageModule,
         ModalModule.forRoot(),
         DlDateTimePickerDateModule,
-        SocialLoginModule,
+      //  SocialLoginModule,
         RouterModule.forRoot(routes),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAZiNVLRX6HTsJ-0hFcsp3nzuMODU2o2ss'
@@ -135,18 +128,6 @@ export function provideConfig() {
         HttpClient,
         ImageUploadService,
         MailService,
-    provideAuth({
-            headerName: 'Authorization',
-            headerPrefix: 'bearer',
-            tokenName: 'token',
-            tokenGetter: (() => localStorage.getItem('id_token')),
-            globalHeaders: [{ 'Content-Type': 'application/json' }],
-            noJwtError: true
-        }),
-        {
-            provide: AuthServiceConfig,
-            useFactory: provideConfig
-        },
     ],
     bootstrap: [AppComponent]
 })

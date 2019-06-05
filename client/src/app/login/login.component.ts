@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { LoginService } from '../../service/login.service';
-import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+// import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } f
 })
 export class LoginComponent implements OnInit {
 
-    user: SocialUser;
+ //   user: SocialUser;
     loggedIn: boolean;
     username: string;
     password: string;
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     loading: any;
     constructor(
         private userService: UserService,
-        private authentificationService: AuthService,
+      //  private authentificationService: AuthService,
         private _router: Router,
         private  loginService: LoginService) {}
 
@@ -33,11 +33,11 @@ export class LoginComponent implements OnInit {
                 this.users = users;
                 console.log('users: ', this.users);
             });
-
-        this.authentificationService.authState.subscribe((user) => {
-            this.user = user;
-            this.loggedIn = (user != null);
-        });
+        //
+        // this.authentificationService.authState.subscribe((user) => {
+        //     this.user = user;
+        //     this.loggedIn = (user != null);
+        // });
     }
 
     login() {
@@ -65,14 +65,14 @@ export class LoginComponent implements OnInit {
 
     signInWithGoogle(): void {
         console.log('test');
-        this.authentificationService.signIn(GoogleLoginProvider.PROVIDER_ID);
+      //  this.authentificationService.signIn(GoogleLoginProvider.PROVIDER_ID);
     }
 
     signInWithFB(): void {
-        this.authentificationService.signIn(FacebookLoginProvider.PROVIDER_ID);
+      //  this.authentificationService.signIn(FacebookLoginProvider.PROVIDER_ID);
     }
 
     signOut(): void {
-        this.authentificationService.signOut();
+     //   this.authentificationService.signOut();
     }
 }

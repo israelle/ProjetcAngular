@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
-import {AuthService} from 'angularx-social-login';
+import { Router } from '@angular/router';
+// import {AuthService} from 'angularx-social-login';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +10,7 @@ import {AuthService} from 'angularx-social-login';
 export class ProfileComponent implements OnInit {
   user: any;
   constructor(
-      private authentificationService: AuthService,
+    //  private authentificationService: AuthService,
       private _router: Router
   ) { }
 

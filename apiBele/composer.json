@@ -34,12 +34,14 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^3.2",
         "symfony/symfony": "3.3.*",
-        "twig/twig": "^1.0||^2.0"
+        "twig/twig": "^1.0||^2.0",
+        "phpoffice/phpword": "^0.14.0"
     },
     "require-dev": {
+        "api-platform/schema-generator": "^1.2",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0",
-        "api-platform/schema-generator":"^1.2"
+        "symfony/web-server-bundle": "^4.3"
     },
     "scripts": {
         "symfony-scripts": [

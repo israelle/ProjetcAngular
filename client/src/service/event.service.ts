@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient } from '@angular/common/http';
 import {ApiRouter} from '../shared/api-routes/api-router.service';
-import {AuthHttp} from 'angular2-jwt';
-
-import {Observable} from 'rxjs/Observable';
-import { filter, map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs/index';
 
 
 const API_URL = 'http://127.0.0.1:8000';
@@ -14,12 +11,12 @@ export class EventService {
     constructor(
         private http: HttpClient,
         private apiRouter: ApiRouter,
-        public authHttp: AuthHttp) {
+        ) {
 
     }
 
     getEvent(): Observable<any> {
-        return this.authHttp.get(this.apiRouter.generate('api_events_get_collection'))
+        return this.http.get(this.apiRouter.generate('api_events_get_collection'))
                  ;
     }
 
@@ -51,8 +48,7 @@ export class EventService {
     // }
 
     putEvent(eventId) {
-        return this.authHttp.put(this.apiRouter.generate('api_events_delete_item'), eventId)
-            .map(res => res.json());
+        return this.http.put(this.apiRouter.generate('api_events_delete_item'), eventId);
     }
 
 }

@@ -5,7 +5,6 @@ import {Contact} from '../app/model/Contact';
 import {throwError} from 'rxjs/internal/observable/throwError';
 import {Observable} from 'rxjs/Observable';
 import {ApiRouter} from '../shared/api-routes/api-router.service';
-import {AuthHttp} from 'angular2-jwt';
 
 @Injectable()
 export class MailService {
@@ -18,7 +17,7 @@ export class MailService {
     };
     constructor(private http: HttpClient,
                 private apiRouter: ApiRouter,
-                public authHttp: AuthHttp) {}
+               ) {}
 
     contactForm(formdata: Contact) {
         return this.http.post<Contact>(this.ServerUrl + 'api/contact', formdata, this.httpOptions).pipe(
@@ -39,8 +38,7 @@ export class MailService {
     }
 
     postMail(event: any): Observable<any> {
-        return this.authHttp.post(this.apiRouter.generate('api_events_post_collection'), event)
-            .map(data => data.json());
+        return this.http.post(this.apiRouter.generate('api_events_post_collection'), event);
     }
 
 }
