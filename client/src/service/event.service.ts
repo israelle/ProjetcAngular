@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {ApiRouter} from '../shared/api-routes/api-router.service';
 import { Observable } from 'rxjs/index';
 
