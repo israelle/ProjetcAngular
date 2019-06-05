@@ -19,7 +19,7 @@
             <a class="dropdown-item" routerLink="/event">Consulter les &eacute;v&egrave;nements</a>
             <a class="dropdown-item" routerLink="event/add">Ajouter un &eacute;v&egrave;nement</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
+            <a class="dropdown-item" href="#">Historique des évènements</a>
         </div>
     </li>
     <li class="nav-item">
@@ -30,84 +30,14 @@
             <button type="submit" class="btn btn-default btn-sm">Rechercher</button>
         </form>
     </li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" routerLink="/joinUs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nous joindre </a>
-        <div class="dropdown-menu">
-        </div>
+    <li class="nav-item">
+        <a  routerLink="/joinUs">Nous joindre </a>
     </li>
     <li class="nav-item dropdown">
-        <a routerLink="/login" class="dropdown-toggle " data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user"></i>  <span (ngModel)="profilName" *ngIf="profilName !== '' || profilName !== 'undefined'" (click)="updateProfil()" >{{profilName}}</span></a>
-        <div class="dropdown-menu">
-
-        </div>
-    </li>
-    <li class="nav-item dropdown" routerLinkActive="active current">
+        <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user"></i>  <span (ngModel)="profilName" *ngIf="profilName !== '' || profilName !== 'undefined'" (click)="updateProfil()" >{{profilName}}</span></a>
         <div class="dropdown-menu">
             <a routerLink="/login" class="dropdown-item" data-toggle="dropdown">Login</a>
             <a class="dropdown-item" routerLink="/home">Log out</a>
         </div>
     </li>
 </ul>
-
-<!--<nav class="navbar " role="navigation">-->
-  <!--<div class="container-fluid">-->
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <!--<div class="navbar-header">-->
-        <!--<ul class="nav navbar-nav">-->
-            <!--<li routerLinkActive="active current"><a class="navbar-brand" routerLink="/home">Accueil</a></li>-->
-        <!--</ul>-->
-    <!--</div>-->
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <!--<div class="collapse navbar-collapse nav" id="bs-example-navbar-collapse-1">-->
-      <!--<ul class="nav navbar-nav">-->
-        <!--<li routerLinkActive="active current"><a routerLink="/presentation">Présentation</a></li>-->
-        <!--<li><a href="http://bamboukreyol.blogspot.fr/">Bambou Kréyol</a></li>-->
-          <!--<li routerLinkActive="active current"><a routerLink="/gallery">Galerie Photo</a></li>-->
-          <!--<li class=" dropdown" routerLinkActive="active current">-->
-              <!--<a routerLink="/event" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">&Eacute;v&egrave;nements <span class="caret"></span></a>-->
-              <!--<ul class="dropdown-menu">-->
-                  <!--<li class=" dropdown" routerLinkActive="active current">-->
-                      <!--<a routerLink="/event" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consulter les &eacute;v&egrave;nements</a>-->
-                  <!--</li>-->
-                  <!--<li routerLinkActive="active current"><a routerLink="event/add">Ajouter un &eacute;v&egrave;nement</a></li>-->
-              <!--</ul>-->
-          <!--</li>-->
-      <!--</ul>-->
-      <!--<form class="navbar-form navbar-left" role="search">-->
-        <!--<div class="form-group">-->
-          <!--<input type="text" class="form-control" placeholder="Search">-->
-        <!--</div>-->
-        <!--<button type="submit" class="btn btn-default btn-sm">Rechercher</button>-->
-      <!--</form>-->
-      <!--<ul class="navbar-nav navbar-left" >-->
-          <!--<li class="nav-item dropdown">-->
-              <!--<a routerLink="/joinUs" class="dropdown-toggle " data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">Nous joindre</a>-->
-          <!--</li>-->
-      <!--</ul>-->
-      <!--<ul class="nav navbar-nav navbar-right">-->
-          <!--<li class="nav-item dropdown">-->
-              <!--<a routerLink="/login" class="dropdown-toggle " data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user"></i>  <span (ngModel)="profilName" *ngIf="profilName !== '' || profilName !== 'undefined'" (click)="updateProfil()" >{{profilName}}</span><span class="caret"></span></a>-->
-                  <!--<ul class="dropdown-menu">-->
-                      <!--&lt;!&ndash;<li class=" dropdown" routerLinkActive="active current">&ndash;&gt;-->
-                          <!--&lt;!&ndash;&lt;!&ndash;<a class="dropdown-item waves-effect waves-light" *ngIf="currentUser" [routerLink] ="['/profile', currentUser.get]">My account</a>&ndash;&gt;&ndash;&gt;-->
-
-                      <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                      <!--<li class=" dropdown" routerLinkActive="active current">-->
-                          <!--<a class="dropdown-item waves-effect waves-light" href="#">Log out</a>-->
-                      <!--</li>-->
-                      <!--<li class="dropdown" routerLinkActive="active current">-->
-                          <!--<a routerLink="/login" class="dropdown-toggle" data-toggle="dropdown">-->
-                              <!--Login-->
-                          <!--</a>-->
-                      <!--</li>-->
-                  <!--</ul>-->
-
-          <!--</li>-->
-      <!--</ul>-->
-    <!--</div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
-  <!--</div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
-<!--</nav>-->
-
-
-
