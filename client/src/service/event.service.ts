@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {ApiRouter} from '../shared/api-routes/api-router.service';
-import { Observable } from 'rxjs/index';
+import { Observable } from 'rxjs/observable';
+import * as Http from 'http';
 
 
 const API_URL = 'http://127.0.0.1:8000';
@@ -16,9 +17,9 @@ export class EventService {
     }
 
     getEvent(): Observable<any> {
-        return this.http.get(this.apiRouter.generate('api_events_get_collection'))
-                 ;
-    }
+     //  return this.http.get(this.apiRouter.generate('api_events_get_collection'));
+     return this.http.get(API_URL + '/events');
+}
 
     findEvents() {
 

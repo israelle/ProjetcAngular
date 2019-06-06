@@ -20,7 +20,10 @@ export class EventComponent implements OnInit {
 
       ngOnInit() {
       // this.seeEvent();
-          console.log('getEvent: ' + this.eventSharedService.getEvent());
+          this.eventSharedService.getEvent().subscribe(data => {
+                  console.log(data);
+          }
+          );
           this.test();
       }
 

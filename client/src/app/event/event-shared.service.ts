@@ -28,7 +28,7 @@ export class EventSharedService {
     }
 
     getEvent() {
-        this.eventService.getEvent();
+       return this.eventService.getEvent();
     }
     refresh() {
         this.eventService.getEvent();
