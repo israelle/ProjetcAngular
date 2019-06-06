@@ -1,5 +1,6 @@
-/.web-server-pid
-#/app/config/parameters.yml
+apiBele/app/config/parameters.yml
+/phpunit.xml
+.idea/
 /build/
 /phpunit.xml
 /var/*
@@ -15,6 +16,10 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+client/node_modules
+/vendor
+apiBele/vendor
+aiBele/composer.phar
 /bin/*
 !bin/console
 !bin/symfony_requirements
