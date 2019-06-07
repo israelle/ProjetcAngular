@@ -5,6 +5,9 @@ import {NotificationType} from '../../shared/notification/notification-type.mode
 // import {ImageUploadService} from '../../service/imageUpload.service';
 // import {ImageUploadModel} from '../image/imageUpload-model';
 import {Observable} from 'rxjs/Observable';
+import {ImageUploadService} from '../../service/imageUpload.service';
+import {ImageUploadModel} from '../image/imageUpload-model';
+import {AngularFireDatabase} from '@angular/fire/database';
  // import {AngularFireDatabase} from 'angularfire2/database';
 
 @Component({
@@ -18,21 +21,20 @@ export class AddAssociationComponent implements OnInit {
     selectedFile: any;
     selectedFiles: FileList;
     _getImages: Observable<any[]>;
-   // currentFileUpload: ImageUploadModel;
+    currentFileUpload: ImageUploadModel;
     progress: {percentage: number} = {percentage: 0};
 
     constructor(
         private associationService: AssociationService,
         private notificationService: NotificationService,
-      //  private imageUploadService: ImageUploadService,
-      //  private db: AngularFireDatabase
+        private imageUploadService: ImageUploadService,
     ) {}
     ngOnInit() {
         this.association.logo = {path: ''};
-        // this.imageUploadService.getImages('/uploads')
-        //     .subscribe(imgage => {
-        //         console.log('imgage', imgage);
-        //     });
+        this.imageUploadService.getImages('/uploads')
+            .subscribe(imgage => {
+                console.log('imgage', imgage);
+            });
         // this.imageUploadService.getImages('/uploads').subscribe( images => {
         //     // this._getImages = images;
         // });
@@ -56,7 +58,7 @@ export class AddAssociationComponent implements OnInit {
                .subscribe(
                    () => {
                        // message de notification
-                       this.notificationService.addNotification(NotificationType.SUCCESS, 'Nouvelle association enregistrée !! .');
+                       // this.notificationService.addNotification(NotificationType.SUCCESS, 'Nouvelle association enregistrée !! .');
                    });
        }
     }
@@ -66,9 +68,10 @@ export class AddAssociationComponent implements OnInit {
     }
 
     upload() {
-        // const file = this.selectedFiles.item(0);
-        // this.currentFileUpload = new ImageUploadModel(file);
-        // this.imageUploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+         const file = this.selectedFiles.item(0);
+         this.selectedFiles = undefined;
+         this.currentFileUpload = new ImageUploadModel(file);
+         this.imageUploadService.pushFileToStorage(this.currentFileUpload, this.progress);
         //
         // this.association.logo.path = this.currentFileUpload.getUrl();
         // this.association.logo.name = this.currentFileUpload.file.name;

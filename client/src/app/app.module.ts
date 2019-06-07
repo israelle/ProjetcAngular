@@ -42,6 +42,9 @@ import {AgmCoreModule} from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
 import { MailService } from '../service/mail.service';
 import {ToastrModule} from 'ngx-toastr';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
 
 
 // const config = new AuthServiceConfig([
@@ -102,8 +105,8 @@ export function provideConfig() {
         CalendarModule,
         HttpClientModule,
         ToastrModule,
-        // AngularFireModule.initializeApp(environment.firebase),
-        // AngularFireDatabaseModule, // for database
+         AngularFireModule.initializeApp(environment.firebase),
+         AngularFireDatabaseModule, // for database
         // AngularFireStorageModule,
         ModalModule.forRoot(),
         DlDateTimePickerDateModule,

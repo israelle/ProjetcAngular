@@ -1,30 +1,28 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-// import { AngularFireDatabase } from 'angularfire2/database';
 import { ImageUploadModel } from '../app/image/imageUpload-model';
-// import {FirebaseListObservable} from 'angularfire2/database-deprecated';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {FirebaseListObservable} from '@angular/fire/database-deprecated';
 
 
 
 @Injectable()
 export class ImageUploadService {
     private basePath = '/uploads';
-  //  private _images: FirebaseListObservable<any[]>;
+    private _images: FirebaseListObservable<any[]>;
 
-    // constructor( private db: AngularFireDatabase) {
-    //     // this._images = db.list('uploads');
-    // }
+    constructor(private db: AngularFireDatabase) { }
 
-    // get images(): FirebaseListObservable<any[]> {
-    //     return this._images;
-    // }
-    //
-    // set images(value: FirebaseListObservable<any[]>) {
-    //     this._images = value;
-    // }
+    get images(): FirebaseListObservable<any[]> {
+        return this._images;
+    }
+
+    set images(value: FirebaseListObservable<any[]>) {
+        this._images = value;
+    }
 
     private saveFileData(fileUpload: ImageUploadModel) {
-      //  this.db.list(`${this.basePath}/`).push(fileUpload);
+        this.db.list(`${this.basePath}/`).push(fileUpload);
         console.log('fileUpload', fileUpload);
     }
 
@@ -53,7 +51,7 @@ export class ImageUploadService {
                          fileUpload.url = downloadURL;
                          fileUpload.name = fileUpload.file.name;
                          console.log('fileUpload: ', fileUpload);
-                         this.saveFileData(fileUpload);
+                         // this.saveFileData(fileUpload);
                      }
                  });
 
@@ -61,7 +59,7 @@ export class ImageUploadService {
     }
 
     getImages(listPath) {
-     //   return this.db.list(listPath).valueChanges();
+        return this.db.list(listPath).valueChanges();
     }
 
 

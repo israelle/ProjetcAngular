@@ -28,13 +28,13 @@ export class EventModalComponent implements OnInit {
     delete() {
         this.isDeleting = true;
         this.eventShareService.deleteEvent(this.eventShareService.selectedEvent)
-            // .finally(() => this.isDeleting = false)
-            // .subscribe(
-            //     () => {
-            //         this.notificationService.addNotification(NotificationType.SUCCESS, 'L\'évènement a été supprimé.');
-            //         this.eventShareService.hideDeleteModal();
-            //     }
-           // )
+            .finally(() => this.isDeleting = false)
+            .subscribe(
+                () => {
+                    this.notificationService.addNotification(NotificationType.SUCCESS, 'L\'évènement a été supprimé.');
+                    this.eventShareService.hideDeleteModal();
+                }
+           )
         ;
             this.eventShareService.refresh();
     }

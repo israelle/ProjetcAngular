@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {ApiRouter} from '../shared/api-routes/api-router.service';
 import { Observable } from 'rxjs/observable';
-import * as Http from 'http';
 
 
 const API_URL = 'http://127.0.0.1:8000';
@@ -18,17 +17,9 @@ export class EventService {
 
     getEvent(): Observable<any> {
        return this.http.get(this.apiRouter.generate('api_events_get_collection'));
-    // return this.http.get(API_URL + '/events');
 }
 
     findEvents() {
-
-    }
-
-    postEvent(event: any) {
-
-    }
-    deleteEvent(event: any) {
 
     }
     // findEvents(): Observable<any> {
@@ -36,17 +27,15 @@ export class EventService {
     //         .map(data => data.json());
     // }
     //
-    // postEvent(event: any): Observable<any> {
-    // return this.authHttp.post(this.apiRouter.generate('api_events_post_collection'), event)
-    //     .map(data => data.json());
-    // }
-    //
-    // deleteEvent(event): Observable<any> {
-    // const eventId = event.id;
-    // console.log(event);
-    //     return this.authHttp.delete(this.apiRouter.generate('api_events_delete_item', {id: eventId}))
-    //         .map(res => res.json());
-    // }
+    postEvent(event: any): Observable<any> {
+    return this.http.post(this.apiRouter.generate('api_events_post_collection'), event);
+    }
+
+    deleteEvent(event): Observable<any> {
+    const eventId = event.id;
+    console.log(event);
+        return this.http.delete(this.apiRouter.generate('api_events_delete_item', {id: eventId}));
+    }
 
     putEvent(eventId) {
         return this.http.put(this.apiRouter.generate('api_events_delete_item'), eventId);

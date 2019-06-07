@@ -19,35 +19,32 @@ export class EventComponent implements OnInit {
   ) { }
 
       ngOnInit() {
-      // this.seeEvent();
+       this.seeEvent();
           this.eventSharedService.getEvent().subscribe(data => {
                   console.log(data);
           }
           );
-          this.test();
       }
 
-      // seeEvent() {
-      //     this.isLoading = true;
-      //     this.eventSharedService.findEvents()
-      //         // .finally(() => this.isLoading = false)
-      //         .subscribe(events => {
-      //             this.events = events;
-      //             console.log(this.events);
-      //             if (this.isLoading) {
-      //                 /** spinner starts on init */
-      //              //   this.spinner.show();
-      //                 setTimeout(() => {
-      //                     /** spinner ends after 5 seconds */
-      //                //     this.spinner.hide();
-      //                 }, 500);
-      //             }
-      //             this.transform();
-      //         });
-      // }
-    test () {
-        console.log('getEvent: ' + this.eventSharedService.getEvent());
-    }
+      seeEvent() {
+          this.isLoading = true;
+          this.eventSharedService.getEvent()
+               .finally(() => this.isLoading = false)
+              .subscribe(events => {
+                  this.events = events;
+                  console.log(this.events);
+                  if (this.isLoading) {
+                      /** spinner starts on init */
+                   //   this.spinner.show();
+                      setTimeout(() => {
+                          /** spinner ends after 5 seconds */
+                     //     this.spinner.hide();
+                      }, 500);
+                  }
+                  this.transform();
+              });
+      }
+
       transform() {
           for (const event of this.events) {
              const debut = new Date (event.startTime);

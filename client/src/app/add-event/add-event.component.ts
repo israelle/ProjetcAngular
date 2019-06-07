@@ -27,6 +27,8 @@ export class AddEventComponent implements OnInit {
   event: any = [];
     fileName = '';
     title = 'Dale Lotts\' angular bootstrap date & time picker';
+
+
   ngOnInit() {
       if (this.eventAlreadyExist()) {
           this.event = this.eventSharedService.selectedEvent;
@@ -69,10 +71,7 @@ export class AddEventComponent implements OnInit {
     }
     onChangeStartTime(event) {
         console.log('event: ', event);
-        const startTime = new Date(event);
-        console.log(startTime);
-      this.event.startTime = startTime.toTimeString();
-        console.log('this.event.startDate: ', this.event.startTime);
+        this.event.endTime = event;
     }
 
     onChangeTitle(event) {
@@ -81,11 +80,12 @@ export class AddEventComponent implements OnInit {
 
   save() {
       const infoEvent = this.event;
-      this.eventSharedService.postEvent(infoEvent);
-          // .subscribe(() => {
-          //     // message de notification
-          //     this.notificationService.addNotification(NotificationType.SUCCESS, 'Nouvel évènement enregistré !!');
-          //      this._router.navigate( ['/event'] );
-          // });
+      this.eventSharedService.postEvent(infoEvent)
+          .subscribe(() => {
+          // message de notification
+             // console.log(infoEvent);
+        //  this.notificationService.addNotification(NotificationType.SUCCESS, 'Nouvel évènement enregistré !!');
+          this._router.navigate( ['/event'] );
+      });
    }
 }
