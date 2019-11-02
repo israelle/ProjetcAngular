@@ -67,7 +67,7 @@ export class AddAssociationComponent implements OnInit {
         this.selectedFiles = event.target.files;
     }
 
-    upload() {
+    upload() : boolean {
          const file = this.selectedFiles.item(0);
          this.selectedFiles = undefined;
          this.currentFileUpload = new ImageUploadModel(file);
@@ -76,6 +76,7 @@ export class AddAssociationComponent implements OnInit {
         // this.association.logo.path = this.currentFileUpload.getUrl();
         // this.association.logo.name = this.currentFileUpload.file.name;
         // récupérer le lien lorsque la barre des tache a fini
+        return true;
 
     }
 }

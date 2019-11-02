@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import {EventSharedService} from '../event/event-shared.service';
 import {NotificationType} from '../../shared/notification/notification-type.model';
 import {NotificationService} from '../../shared/notification/notification.service';

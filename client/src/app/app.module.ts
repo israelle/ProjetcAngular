@@ -31,7 +31,7 @@ import { EventModalComponent } from './event/event-modal.component';
 import { AssociationService } from '../service/association.service';
 import { AddAssociationComponent } from './add-association/add-association.component';
 import { ImageUploadService } from '../service/imageUpload.service';
-import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
+//import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './profile/profile.component';
@@ -45,6 +45,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 // const config = new AuthServiceConfig([
@@ -100,6 +101,7 @@ export function provideConfig() {
         CarouselModule.forRoot(),
         TimepickerModule.forRoot(),
         BsDatepickerModule.forRoot(),
+        MDBBootstrapModule.forRoot(),
         AlertModule,
         FormsModule,
         CalendarModule,
@@ -109,7 +111,7 @@ export function provideConfig() {
          AngularFireDatabaseModule, // for database
         // AngularFireStorageModule,
         ModalModule.forRoot(),
-        DlDateTimePickerDateModule,
+        //DlDateTimePickerDateModule,
       //  SocialLoginModule,
         RouterModule.forRoot(routes),
         AgmCoreModule.forRoot({

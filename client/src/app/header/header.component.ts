@@ -10,7 +10,7 @@ import {LoginService} from '../../service/login.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-     profilName: string;
+     profilName: string; 
 
   constructor(private userService: UserService,
               private loginService: LoginService
@@ -24,11 +24,11 @@ export class HeaderComponent implements OnInit {
   serviceLogin: any;
 
   ngOnInit() {
-      this.profilName = 'Profile';
+      this.profilName = '';
   }
 
   updateProfil() {
-     // console.log('local: ', localStorage.getItem('currentUser'));
+     console.log('local: ', localStorage.getItem('currentUser'));
   }
 
 }
