@@ -16,8 +16,8 @@
      text-align: center;
     /*text-decoration:none;*/
 }
- li a:hover {
-    color:brown;
+ul.navbar-nav.mr-auto li a:hover {
+    color: black;;
 }
 
  ul li ul {
@@ -32,5 +32,9 @@
 }
 
  nav {
-     background-color: black;
+     background-color: white;
  }
+
+ul.navbar-nav.mr-auto li a {
+    color: rgb(252, 253, 252);
+}
