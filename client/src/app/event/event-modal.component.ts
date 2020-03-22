@@ -11,8 +11,8 @@ import {NotificationService} from '../../shared/notification/notification.servic
     styleUrls: ['./event-modal.component.css']
 })
 export class EventModalComponent implements OnInit {
-    @ViewChild('editModal', {static: false}) editModal: ModalDirective;
-    @ViewChild('deleteModal', {static: false}) deleteModal: ModalDirective;
+    @ViewChild('editModal') editModal: ModalDirective;
+    @ViewChild('deleteModal') deleteModal: ModalDirective;
     isDeleting = false;
     selectedEvent: any = {};
 

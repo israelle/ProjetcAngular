@@ -13,16 +13,16 @@
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0",
-    "@angular/animations": "^8.2.13",
-    "@angular/common": "^8.2.13",
-    "@angular/compiler": "^8.2.13",
-    "@angular/core": "^8.2.13",
+    "@angular/animations": "^9.0.7",
+    "@angular/common": "^9.0.7",
+    "@angular/compiler": "^9.0.7",
+    "@angular/core": "^9.0.7",
     "@angular/fire": "^5.2.1",
-    "@angular/forms": "^8.2.13",
+    "@angular/forms": "^9.0.7",
     "@angular/http": "^7.2.15",
-    "@angular/platform-browser": "^8.2.13",
-    "@angular/platform-browser-dynamic": "^8.2.13",
-    "@angular/router": "^8.2.13",
+    "@angular/platform-browser": "^9.0.7",
+    "@angular/platform-browser-dynamic": "^9.0.7",
+    "@angular/router": "^9.0.7",
     "@auth0/angular-jwt": "^3.0.1",
     "@firebase/app": "^0.4.22",
     "angular-bootstrap-datetimepicker": "^3.1.0",
@@ -50,17 +50,17 @@
     "rxjs-compat": "6.5.3",
     "toastr": "^2.1.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.900.7",
-    "@angular/cli": "^8.3.17",
-    "@angular/compiler-cli": "^8.2.13",
-    "@angular/language-service": "^8.2.13",
+    "@angular-devkit/build-angular": "~0.900.7",
+    "@angular/cli": "^9.0.7",
+    "@angular/compiler-cli": "^9.0.7",
+    "@angular/language-service": "^9.0.7",
     "@types/jasmine": "~3.4.5",
     "@types/jasminewd2": "^2.0.8",
-    "@types/node": "^12.12.5",
-    "codelyzer": "^5.0.1",
+    "@types/node": "^12.11.1",
+    "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "^4.4.1",
@@ -72,6 +72,6 @@
     "protractor": "^6.0.0",
     "ts-node": "~8.4.1",
     "tslint": "~5.20.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.6.4"
   }
 }
