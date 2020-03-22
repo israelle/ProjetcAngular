@@ -22,7 +22,7 @@ import { ImageDetailComponent } from './image/image-detail.component';
 import { EventSharedService } from './event/event-shared.service';
 import { ApiRouter } from '../shared/api-routes/api-router.service';
 import { UserService } from '../service/user.service';
-import {FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpWrapperModule } from 'angular4-http-wrapper';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { NotificationComponent } from '../shared/notification/notification.component';
@@ -31,19 +31,14 @@ import { EventModalComponent } from './event/event-modal.component';
 import { AssociationService } from '../service/association.service';
 import { AddAssociationComponent } from './add-association/add-association.component';
 import { ImageUploadService } from '../service/imageUpload.service';
-//import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './profile/profile.component';
-// import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
-// import { GoogleLoginProvider } from 'angularx-social-login';
 import { JoinUsComponent } from './join-us/join-us.component';
 import {AgmCoreModule} from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
 import { MailService } from '../service/mail.service';
 import {ToastrModule} from 'ngx-toastr';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
@@ -93,31 +88,28 @@ export function provideConfig() {
         JoinUsComponent,
         FooterComponent,
     ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        NgxCarouselModule,
-        HttpWrapperModule,
-        CarouselModule.forRoot(),
-        TimepickerModule.forRoot(),
-        BsDatepickerModule.forRoot(),
-        MDBBootstrapModule.forRoot(),
-        AlertModule,
-        FormsModule,
-        CalendarModule,
-        HttpClientModule,
-        ToastrModule,
-         AngularFireModule.initializeApp(environment.firebase),
-         AngularFireDatabaseModule, // for database
-        // AngularFireStorageModule,
-        ModalModule.forRoot(),
-        //DlDateTimePickerDateModule,
-      //  SocialLoginModule,
-        RouterModule.forRoot(routes),
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyAZiNVLRX6HTsJ-0hFcsp3nzuMODU2o2ss'
-        })
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    NgxCarouselModule,
+    HttpWrapperModule,
+    CarouselModule.forRoot(),
+    TimepickerModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    MDBBootstrapModule.forRoot(),
+    AlertModule,
+    FormsModule,
+    CalendarModule,
+    HttpClientModule,
+    ToastrModule,
+    ModalModule.forRoot(),
+    //  SocialLoginModule,
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAZiNVLRX6HTsJ-0hFcsp3nzuMODU2o2ss'
+    }),
+    ReactiveFormsModule
+  ],
     providers: [
         LoginService,
         EventService,

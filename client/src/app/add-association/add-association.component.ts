@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AssociationService} from '../../service/association.service';
 import {NotificationService} from '../../shared/notification/notification.service';
-import {NotificationType} from '../../shared/notification/notification-type.model';
-// import {ImageUploadService} from '../../service/imageUpload.service';
-// import {ImageUploadModel} from '../image/imageUpload-model';
 import {Observable} from 'rxjs/Observable';
 import {ImageUploadService} from '../../service/imageUpload.service';
 import {ImageUploadModel} from '../image/imageUpload-model';
-import {AngularFireDatabase} from '@angular/fire/database';
- // import {AngularFireDatabase} from 'angularfire2/database';
 
 @Component({
     selector: 'app-add-association',
@@ -27,14 +22,14 @@ export class AddAssociationComponent implements OnInit {
     constructor(
         private associationService: AssociationService,
         private notificationService: NotificationService,
-        private imageUploadService: ImageUploadService,
+       // private imageUploadService: ImageUploadService,
     ) {}
     ngOnInit() {
         this.association.logo = {path: ''};
-        this.imageUploadService.getImages('/uploads')
-            .subscribe(imgage => {
-                console.log('imgage', imgage);
-            });
+        // this.imageUploadService.getImages('/uploads')
+        //     .subscribe(imgage => {
+        //         console.log('imgage', imgage);
+        //     });
         // this.imageUploadService.getImages('/uploads').subscribe( images => {
         //     // this._getImages = images;
         // });
@@ -67,11 +62,11 @@ export class AddAssociationComponent implements OnInit {
         this.selectedFiles = event.target.files;
     }
 
-    upload() : boolean {
+    upload(): boolean {
          const file = this.selectedFiles.item(0);
          this.selectedFiles = undefined;
          this.currentFileUpload = new ImageUploadModel(file);
-         this.imageUploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+        // this.imageUploadService.pushFileToStorage(this.currentFileUpload, this.progress);
         //
         // this.association.logo.path = this.currentFileUpload.getUrl();
         // this.association.logo.name = this.currentFileUpload.file.name;

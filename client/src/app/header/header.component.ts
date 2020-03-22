@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../service/user.service';
-import {AuthService} from '../../service/auth.service';
 import {LoginService} from '../../service/login.service';
-// import {SocialUser} from 'angularx-social-login';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +8,7 @@ import {LoginService} from '../../service/login.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-     profilName: string; 
-
+     profilName: string;
   constructor(private userService: UserService,
               private loginService: LoginService
              ) {
@@ -21,8 +18,6 @@ export class HeaderComponent implements OnInit {
 
   users: any;
   currentUser: any;
-  serviceLogin: any;
-
   ngOnInit() {
       this.profilName = '';
   }
