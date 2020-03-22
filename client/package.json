@@ -25,7 +25,7 @@
     "@angular/router": "^8.2.13",
     "@auth0/angular-jwt": "^3.0.1",
     "@firebase/app": "^0.4.22",
-    "angular-bootstrap-datetimepicker": "^3.0.0",
+    "angular-bootstrap-datetimepicker": "^3.1.0",
     "angular-bootstrap-md": "^8.5.0",
     "angular4-http-wrapper": "0.0.40",
     "angularfire2": "^5.2.1",
