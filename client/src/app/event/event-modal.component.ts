@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {EventSharedService} from './event-shared.service';
 import 'rxjs/add/operator/finally';
 import {NotificationType} from '../../shared/notification/notification-type.model';
-import {ModalDirective} from 'ngx-bootstrap';
 import {NotificationService} from '../../shared/notification/notification.service';
+import {ModalDirective} from 'ngx-bootstrap/modal';
 
 @Component({
     selector: 'app-event-modal',

@@ -14,5 +14,16 @@ NelmioApiDocBundle:
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
+upload_picture:
+  path: '/upload/{name}'
+  methods: ['POST']
+  defaults:
+    _controller: 'AppBundle:Picture:upload'
+
+#upload_file:
+#  path:       '/upload/{name}'
+#  controller: 'AppBundle:Picture:upload'
+#  methods:    ['POST']
+
 #api_login_check:
 #    path: /api/login_check

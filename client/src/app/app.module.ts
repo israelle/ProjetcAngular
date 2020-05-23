@@ -11,8 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule, Route} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { NgxCarouselModule } from 'ngx-carousel';
-import { AlertModule, BsDatepickerModule, CarouselModule, ModalModule, TimepickerModule} from 'ngx-bootstrap';
+// import { NgxCarouselModule } from 'ngx-carousel';
 import { AddEventComponent } from './add-event/add-event.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ImageComponent } from './image/image.component';
@@ -41,6 +40,12 @@ import { MailService } from '../service/mail.service';
 import {ToastrModule} from 'ngx-toastr';
 import {environment} from '../environments/environment';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {CarouselModule} from 'ngx-bootstrap/carousel';
+import {TimepickerModule} from 'ngx-bootstrap/timepicker';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {AlertModule} from 'ngx-bootstrap/alert';
+import {ModalModule} from 'ngx-bootstrap/modal';
+import {AuthenticationService} from '../service/authentication.service';
 
 
 // const config = new AuthServiceConfig([
@@ -91,7 +96,7 @@ export function provideConfig() {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NgxCarouselModule,
+   // NgxCarouselModule,
     HttpWrapperModule,
     CarouselModule.forRoot(),
     TimepickerModule.forRoot(),
@@ -103,7 +108,7 @@ export function provideConfig() {
     HttpClientModule,
     ToastrModule,
     ModalModule.forRoot(),
-    //  SocialLoginModule,
+    //  SocialLoginModule,EVENT
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAZiNVLRX6HTsJ-0hFcsp3nzuMODU2o2ss'
@@ -125,6 +130,7 @@ export function provideConfig() {
         HttpClient,
         ImageUploadService,
         MailService,
+        AuthenticationService,
     ],
     bootstrap: [AppComponent]
 })

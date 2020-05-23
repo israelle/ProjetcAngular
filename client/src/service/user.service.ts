@@ -43,7 +43,7 @@ export class UserService {
 
 
   getAll() {
-    return this.http.get<User[]>(`/users`);
+    return this.http.get<User[]>(environment.api_url + `/users`);
   }
 
   register(user: User) {

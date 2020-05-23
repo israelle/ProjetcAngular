@@ -3,15 +3,18 @@ import { Injectable } from '@angular/core';
 import { ImageUploadModel } from '../app/image/imageUpload-model';
 // import {AngularFireDatabase} from '@angular/fire/database';
 // import {FirebaseListObservable} from '@angular/fire/database-deprecated';
+import * as FileSaver from 'file-saver';
 
-
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../environments/environment';
+import {RequestOptions} from '@angular/http';
 
 @Injectable()
 export class ImageUploadService {
     // private basePath = '/uploads';
     // private _images: FirebaseListObservable<any[]>;
     //
-    // constructor(private db: AngularFireDatabase) { }
+    constructor(private httpClient: HttpClient) { }
     //
     // get images(): FirebaseListObservable<any[]> {
     //     return this._images;
@@ -61,6 +64,43 @@ export class ImageUploadService {
     // getImages(listPath) {
     //     return this.db.list(listPath).valueChanges();
     // }
+
+  public updateImage(associationId: number, image: File) {
+    const formData = new FormData();
+    formData.append('image', image);
+
+    const endPoint = `${environment.api_url}/pictures/${associationId}/update`;
+
+   // return this.uploadFile(endPoint, formData);
+  }
+
+  public upload(image: File, name: string) {
+      console.log(image);
+    const logo = new FormData();
+    logo.append('image', image);
+    logo.append('name', name);
+    const endPoint = `${environment.api_url}/upload/${name}`;
+
+    this.httpClient.post(endPoint, logo)
+      .subscribe(response => {
+        FileSaver.saveAs(response, name);
+      });
+  }
+
+  public published(selectedFile) {
+    const headers = new Headers();
+    headers.append('content-type', 'application/json');
+    const formData = new FormData();
+    formData.append('urlPubli', selectedFile);
+    const body = {
+      urlPubli: selectedFile,
+    };
+    console.log( body);
+
+    return this.httpClient.post(environment.api_url + 'upload/' + selectedFile.name, body.urlPubli).subscribe(data => {
+      console.log(data);
+    });
+  }
 
 }
 

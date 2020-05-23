@@ -4,6 +4,8 @@ import {NotificationService} from '../../shared/notification/notification.servic
 import {Observable} from 'rxjs/Observable';
 import {ImageUploadService} from '../../service/imageUpload.service';
 import {ImageUploadModel} from '../image/imageUpload-model';
+import {NotificationType} from '../../shared/notification/notification-type.model';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
     selector: 'app-add-association',
@@ -13,65 +15,52 @@ import {ImageUploadModel} from '../image/imageUpload-model';
 export class AddAssociationComponent implements OnInit {
 
     association: any = {};
-    selectedFile: any;
+    selectedFile: File = null;
     selectedFiles: FileList;
     _getImages: Observable<any[]>;
     currentFileUpload: ImageUploadModel;
     progress: {percentage: number} = {percentage: 0};
+    fileData: File = null;
+    previewUrl: any = null;
+    fileUploadProgress: string = null;
+    uploadedFilePath: string = null;
 
     constructor(
         private associationService: AssociationService,
         private notificationService: NotificationService,
-       // private imageUploadService: ImageUploadService,
+        private imageUploadService: ImageUploadService,
+        private http: HttpClient,
     ) {}
     ngOnInit() {
         this.association.logo = {path: ''};
-        // this.imageUploadService.getImages('/uploads')
-        //     .subscribe(imgage => {
-        //         console.log('imgage', imgage);
-        //     });
-        // this.imageUploadService.getImages('/uploads').subscribe( images => {
-        //     // this._getImages = images;
-        // });
-      // this._getImages = this.getImages('/uploads');
-     //  console.log('this._getImages', this._getImages);
     }
 
-    onselected(event) {
-        this.selectedFile = event.target.files[0];
-    }
-
-    // getImages(listPath): Observable<any[]> {
-    //     return this.db.list(listPath).valueChanges();
-    // }
     save() {
       //  this.upload();
-       const association =  this.association;
-       this.associationService.newAssociation = association;
-       if (this.upload()) {
-           this.associationService.save(association)
-               .subscribe(
-                   () => {
-                       // message de notification
-                       // this.notificationService.addNotification(NotificationType.SUCCESS, 'Nouvelle association enregistrée !! .');
-                   });
-       }
+      //  const association =  this.association;
+      //  console.log(this.association);
+      //  this.associationService.newAssociation = association;
+      //      this.associationService.save(association)
+      //          .subscribe(
+      //              () => {
+      //                  // message de notification
+      //                  this.notificationService.addNotification(NotificationType.SUCCESS, 'Nouvelle association enregistrée !! .');
+      //              });
     }
 
-    selectFile(event) {
-        this.selectedFiles = event.target.files;
-    }
+  fileProgress(fileInput: any) {
+    // this.fileData = <File>fileInput.target.files[0];
+    // this.preview();
+  }
 
-    upload(): boolean {
-         const file = this.selectedFiles.item(0);
-         this.selectedFiles = undefined;
-         this.currentFileUpload = new ImageUploadModel(file);
-        // this.imageUploadService.pushFileToStorage(this.currentFileUpload, this.progress);
-        //
-        // this.association.logo.path = this.currentFileUpload.getUrl();
-        // this.association.logo.name = this.currentFileUpload.file.name;
-        // récupérer le lien lorsque la barre des tache a fini
-        return true;
+  onSelectedFile(event) {
+      this.selectedFile = <File> event.target.files[0];
+  }
+  published() {
+      console.log(this.selectedFile);
+      console.log(this.association.name);
+    this.imageUploadService.upload(this.selectedFile, this.association.name);
 
-    }
+    // this.imageUploadService.published(this.selectedFile);
+  }
 }

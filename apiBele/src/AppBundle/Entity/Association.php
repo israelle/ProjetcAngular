@@ -43,11 +43,11 @@ class Association
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Picture")
+     * @ORM\OneToOne(targetEntity="Picture", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="photo_id", referencedColumnName="id")
      * @Groups({"event_get","event_post"})
      */
-    private $logo;
+    private $picture;
 
 
     /**
@@ -109,26 +109,18 @@ class Association
     }
 
     /**
-     * Set logo.
-     *
-     * @param \AppBundle\Entity\Picture|null $logo
-     *
-     * @return Association
+     * @return mixed
      */
-    public function setLogo(\AppBundle\Entity\Picture $logo = null)
+    public function getPicture()
     {
-        $this->logo = $logo;
-
-        return $this;
+        return $this->picture;
     }
 
     /**
-     * Get logo.
-     *
-     * @return \AppBundle\Entity\Picture|null
+     * @param mixed $picture
      */
-    public function getLogo()
+    public function setPicture($picture): void
     {
-        return $this->logo;
+        $this->picture = $picture;
     }
 }

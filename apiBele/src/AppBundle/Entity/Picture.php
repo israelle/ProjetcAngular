@@ -3,9 +3,10 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiResource;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource()
@@ -28,10 +29,22 @@ class Picture
 
     /**
      * @var string
-     * @ORM\Column(name="nom", type="string", length=50)
+     * @ORM\Column(name="nom", type="string", length=255)
      * @Groups({"event_get"})
      */
     private $name;
+
+    /**
+     * @Assert\File(mimeTypes={ "multipart/related" })
+     *
+     */
+    private $file;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="pictures", cascade={"persist"})
+     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+     */
+    private $category;
 
     /**
      * @var string
@@ -39,12 +52,6 @@ class Picture
      * @Groups({"event_get"})
      */
     private $path;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="pictures")
-     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
-     */
-    private $category;
 
     /**
      * @return mixed
@@ -126,26 +133,34 @@ class Picture
     }
 
     /**
-     * Set path.
-     *
-     * @param string $path
-     *
-     * @return Picture
+     * @return string
      */
-    public function setPath($path)
+    public function getFile(): ?string
     {
-        $this->path = $path;
-
-        return $this;
+        return $this->file;
     }
 
     /**
-     * Get path.
-     *
+     * @param string $file
+     */
+    public function setFile(UploadedFile $file): void
+    {
+        $this->file = $file;
+    }
+
+    /**
      * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
+    }
+
+    /**
+     * @param string $path
+     */
+    public function setPath(string $path): void
+    {
+        $this->path = $path;
     }
 }

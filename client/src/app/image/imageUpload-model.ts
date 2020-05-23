@@ -3,8 +3,9 @@ import {DeserializableModel} from './deserializable-model';
 export  class ImageUploadModel implements DeserializableModel {
 
     $key: string;
-     name: string;
-     url: string;
+    id: number;
+    name: string;
+    url: string;
     file: File;
 
     constructor(file: File) {

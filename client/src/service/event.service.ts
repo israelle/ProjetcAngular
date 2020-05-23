@@ -33,7 +33,6 @@ export class EventService {
 
     deleteEvent(event): Observable<any> {
     const eventId = event.id;
-    console.log(event);
         return this.http.delete(this.apiRouter.generate('api_events_delete_item', {id: eventId}));
     }
 
