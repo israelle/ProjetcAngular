@@ -13,6 +13,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class Picture
  * @ORM\Table(name="photo")
  * @ORM\Entity()
+ * @UniqueEntity(
+ *   fields={"name","path"},
+ *   message="This path is already existed."
+ * )
  *
  */
 class Picture

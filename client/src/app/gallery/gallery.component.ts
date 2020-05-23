@@ -14,7 +14,6 @@ export class GalleryComponent implements OnChanges  {
      display = 'none';
 
     constructor(private imageService: ImageService) {
-        console.log(this.filterBy);
         this.visibleImages = this.imageService.getImages();
     }
 

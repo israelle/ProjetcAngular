@@ -42,15 +42,14 @@ class PictureController extends Controller
             fclose($fileD);
 
             $picture->setPath($directoryAssociation.'\\'.$file->getClientOriginalName());
-            dump($picture);
 
             // TODO : gérer les messages d'erreurs
 
-           if ($picture->getCategory() == null) {
+          // if ($picture->getCategory() === null) {
                 $picture->getCategory()->setName('logo');
                 $picture->getCategory()->setDate(new \DateTime());
-               // $em->flush();
-           }
+                $em->flush();
+          // }
         }
 
 

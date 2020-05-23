@@ -11,6 +11,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
  * @ApiResource()
  * @ORM\Table(name="Categorie")
  * @ORM\Entity()
+ * @UniqueEntity(
+ *     fields={"name"},
+ *     message="This name is already used."
+ * )
  *
  */
 class Category
