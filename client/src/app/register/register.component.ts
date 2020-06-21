@@ -3,6 +3,9 @@ import {UserService} from '../../service/user.service';
 import {NotificationService} from '../../shared/notification/notification.service';
 import {NotificationType} from '../../shared/notification/notification-type.model';
 import {Router} from '@angular/router';
+import {first} from 'rxjs/operators';
+import {AuthenticationService} from '../../service/authentication.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -10,41 +13,54 @@ import {Router} from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  users: any;
-  newUser: any = {};
-  formErrors: any = {};
-  loading: boolean;
+  registerForm: FormGroup;
+  loading = false;
+  submitted = false;
 
-
-    constructor( private userService: UserService,
-               private notificationService: NotificationService,
-                 private router: Router,
-  ) { }
-
-  ngOnInit() {
-    this.userService.getUsers()
-      .subscribe(users => {
-      this.users = users;
-    });
-      this.loading = false;
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private userService: UserService,
+  ) {
+    // redirect to home if already logged in
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
   }
 
-  registerUser() {
-    const user = this.newUser;
-    this.userService.postUsers(user)
-        .subscribe(() => {
-          // message de notification
-            this.notificationService.addNotification(NotificationType.SUCCESS, 'Vous êtes maintenant enregistré !! .');
-            this.loading = true;
-                this.router.navigate( ['/login'] );
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.userService.register(this.registerForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          // this.alertService.success('Registration successful', true);
+          this.router.navigate(['/login']);
         },
-            error => {
-                this.formErrors = {};
-                for (const violation of error.violations) {
-                    this.formErrors[violation.propertyPath] = [this.formErrors[violation.propertyPath], violation.message].join(' ');
-                }
-            }
-        );
+        error => {
+          // this.alertService.error(error);
+          this.loading = false;
+        });
   }
 
 }

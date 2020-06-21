@@ -3,34 +3,31 @@
     padding:0;
     list-style-type:none;
     text-align:center;
-}
- li {
-    /*float:left;*/
-    /*margin:auto;*/
-    /*padding:0;*/
-    /*background-color:black;*/
-}
+ }
+
  li a {
     display:block;
-    /*width:120px;*/
      text-align: center;
-    /*text-decoration:none;*/
-}
- li a:hover {
-    color:brown;
+ }
+ 
+ ul.navbar-nav.mr-auto li a:hover {
+    color: black;;
 }
 
  ul li ul {
     display:none;
-}
+ }
 
  ul li:hover ul {
     display:block;
-}
+ }
  li:hover ul li {
     float:none;
-}
-
+ }
  nav {
-     background-color: black;
+     background-color: darkolivegreen;
+ }
+
+ ul.navbar-nav.mr-auto li a {
+    color: black;
  }

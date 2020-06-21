@@ -11,8 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule, Route} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { NgxCarouselModule } from 'ngx-carousel';
-import { AlertModule, BsDatepickerModule, CarouselModule, ModalModule, TimepickerModule} from 'ngx-bootstrap';
+// import { NgxCarouselModule } from 'ngx-carousel';
 import { AddEventComponent } from './add-event/add-event.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ImageComponent } from './image/image.component';
@@ -22,7 +21,7 @@ import { ImageDetailComponent } from './image/image-detail.component';
 import { EventSharedService } from './event/event-shared.service';
 import { ApiRouter } from '../shared/api-routes/api-router.service';
 import { UserService } from '../service/user.service';
-import {FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpWrapperModule } from 'angular4-http-wrapper';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { NotificationComponent } from '../shared/notification/notification.component';
@@ -31,20 +30,24 @@ import { EventModalComponent } from './event/event-modal.component';
 import { AssociationService } from '../service/association.service';
 import { AddAssociationComponent } from './add-association/add-association.component';
 import { ImageUploadService } from '../service/imageUpload.service';
-import { DlDateTimePickerDateModule } from 'angular-bootstrap-datetimepicker';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './profile/profile.component';
-// import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
-// import { GoogleLoginProvider } from 'angularx-social-login';
 import { JoinUsComponent } from './join-us/join-us.component';
 import {AgmCoreModule} from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
 import { MailService } from '../service/mail.service';
 import {ToastrModule} from 'ngx-toastr';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {CarouselModule} from 'ngx-bootstrap/carousel';
+import {TimepickerModule} from 'ngx-bootstrap/timepicker';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {AlertModule} from 'ngx-bootstrap/alert';
+import {ModalModule} from 'ngx-bootstrap/modal';
+import {AuthenticationService} from '../service/authentication.service';
+import { AddGalleryComponent } from './add-gallery/add-gallery.component';
+import {CategoryService} from '../service/category.service';
 
 
 // const config = new AuthServiceConfig([
@@ -65,6 +68,7 @@ const routes = [
     { path: 'image/:id', component: ImageDetailComponent },
     { path: 'profile/:id', component: ProfileComponent },
     { path: 'joinUs', component: JoinUsComponent },
+    { path: 'gallery/add', component: AddGalleryComponent },
     ];
 
 export function provideConfig() {
@@ -91,31 +95,30 @@ export function provideConfig() {
         ProfileComponent,
         JoinUsComponent,
         FooterComponent,
+        AddGalleryComponent,
     ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        NgxCarouselModule,
-        HttpWrapperModule,
-        CarouselModule.forRoot(),
-        TimepickerModule.forRoot(),
-        BsDatepickerModule.forRoot(),
-        AlertModule,
-        FormsModule,
-        CalendarModule,
-        HttpClientModule,
-        ToastrModule,
-         AngularFireModule.initializeApp(environment.firebase),
-         AngularFireDatabaseModule, // for database
-        // AngularFireStorageModule,
-        ModalModule.forRoot(),
-        DlDateTimePickerDateModule,
-      //  SocialLoginModule,
-        RouterModule.forRoot(routes),
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyAZiNVLRX6HTsJ-0hFcsp3nzuMODU2o2ss'
-        })
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+   // NgxCarouselModule,
+    HttpWrapperModule,
+    CarouselModule.forRoot(),
+    TimepickerModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    MDBBootstrapModule.forRoot(),
+    AlertModule,
+    FormsModule,
+    CalendarModule,
+    HttpClientModule,
+    ToastrModule,
+    ModalModule.forRoot(),
+    //  SocialLoginModule,EVENT
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAZiNVLRX6HTsJ-0hFcsp3nzuMODU2o2ss'
+    }),
+    ReactiveFormsModule
+  ],
     providers: [
         LoginService,
         EventService,
@@ -131,6 +134,8 @@ export function provideConfig() {
         HttpClient,
         ImageUploadService,
         MailService,
+        AuthenticationService,
+        CategoryService,
     ],
     bootstrap: [AppComponent]
 })

@@ -17,7 +17,7 @@ export class EventService {
 
     getEvent(): Observable<any> {
        return this.http.get(this.apiRouter.generate('api_events_get_collection'));
-}
+    }
 
     findEvents() {
 
@@ -33,7 +33,6 @@ export class EventService {
 
     deleteEvent(event): Observable<any> {
     const eventId = event.id;
-    console.log(event);
         return this.http.delete(this.apiRouter.generate('api_events_delete_item', {id: eventId}));
     }
 

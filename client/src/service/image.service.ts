@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { ApiRouter } from '../shared/api-routes/api-router.service';
 
 @Injectable()
 export class ImageService {
     visibleImages = [];
+
+  constructor(
+    private http: HttpClient,
+    private apiRouter: ApiRouter,
+  ) {}
 
     getImages() {
         return this.visibleImages = IMAGES.slice(0);
@@ -10,6 +18,10 @@ export class ImageService {
 
     getImage(id: number) {
         return IMAGES.slice(0).find(image => image.id === id);
+    }
+
+    getAllCategory(): Observable<any> {
+        return this.http.get(this.apiRouter.generate('api_categories_get_collection'));
     }
 }
 

@@ -11,6 +11,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
  * @ApiResource()
  * @ORM\Table(name="Categorie")
  * @ORM\Entity()
+ * @UniqueEntity(
+ *     fields={"name"},
+ *     message="This name is already used."
+ * )
  *
  */
 class Category
@@ -51,6 +55,14 @@ class Category
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     /**

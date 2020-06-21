@@ -4,32 +4,22 @@
             <label>Nom de l'association : </label>
             <input type="text" class="form-control" placeholder="nom de l'association" [(ngModel)]="association.name" name="associationName" id="associationName" #associationName="ngModel"required>
             <div *ngIf="f.submitted && !associationName.valid" class="help-block">Le nom de l'association est requis !!</div>
-            <!--<p *ngIf="f.submitted && !formErrors.cv" class="help-block">{{  }}</p>-->
         </div>
-        <div class="form-group">
-            <label for="logo">Logo</label>
-                <input type="file" class="form-control" (change)="selectFile($event)" [(ngModel)]="association.logo.path" name="logo" id="logo" accept=".jpg, .png, .gif, .jpeg">
-        </div>
+      <div class="form-group">
+        <input type="file" name="image" class="btn-sm" (change)="onSelectedFile($event)" />
+      </div>
+      <div class="form-group">
+        <div><i class="glyphicon glyphicon-ok-sign"></i></div>
+      </div>
         <div class="form-group">
             <label for="description">Descriptif: </label>
             <textarea placeholder="(500 caracters max)" class="form-control" id="description" name="description" [(ngModel)]="association.description"></textarea>
         </div>
-        <div *ngIf="currentFileUpload" class="progress form-group">
-            <div class="progress-bar progress-bar-info progress-bar-striped"
-                 role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-                 aria-valuemin="0" aria-valuemax="100"
-                 [ngStyle]="{width:progress.percentage+'%'}">
-                {{progress.percentage}}%</div>
-        </div>
     </div>
-
     <div class="form-group col-md-6">
-        <button class="btn btn-success" [disabled]="!selectedFiles"> Enregistrer</button>
-        <button class="btn btn-primary">Effacer</button>
-        <a routerLink="/event/add" class="btn btn-danger">Annuler</a>
-    </div>
-    <div *ngFor="let image of _getImages | async">
-        {{image.name}}
+        <button type="submit" class="btn btn-success btn-sm"> Enregistrer</button>
+        <button class="btn btn-primary btn-sm">Effacer</button>
+        <a routerLink="/event/add" class="btn btn-danger btn-sm">Annuler</a>
     </div>
 </form>
 

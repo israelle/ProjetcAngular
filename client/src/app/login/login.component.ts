@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserService } from '../../service/user.service';
-import { LoginService } from '../../service/login.service';
-// import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import {ActivatedRoute, Router} from '@angular/router';
+import {first} from 'rxjs/operators';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthenticationService} from '../../service/authentication.service';
+import {NotificationService} from '../../shared/notification/notification.service';
 
 
 @Component({
@@ -11,68 +12,54 @@ import { LoginService } from '../../service/login.service';
     styleUrls: ['./login.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
 
- //   user: SocialUser;
-    loggedIn: boolean;
-    username: string;
-    password: string;
-    error: string;
-    model: any = {};
-    users: any;
-    currentUser: any;
-    loading: any;
-    constructor(
-        private userService: UserService,
-      //  private authentificationService: AuthService,
-        private _router: Router,
-        private  loginService: LoginService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private notificationService: NotificationService,
+  ) {
+    // redirect to home if already logged in
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/']);
+    }
+  }
 
-    ngOnInit(): void {
-        this.loginService.getUsersDatabase()
-            .subscribe( users => {
-                this.users = users;
-                console.log('users: ', this.users);
-            });
-        //
-        // this.authentificationService.authState.subscribe((user) => {
-        //     this.user = user;
-        //     this.loggedIn = (user != null);
-        // });
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
     }
 
-    login() {
-        if (this.model.username !== '' && this.model.password !== '') {
-            this.loading = true;
-            this.findCurrentUser(this.model.username, this.model.password);
-            // this._router.navigate( ['/home'] );
-        }
-    }
-
-    findCurrentUser(username: string, password: string) {
-        this.userService.getUsers()
-            .subscribe(users => {
-                this.users = users;
-                for (const user of this.users) {
-                    if (user.username === username && user.password === password) {
-                        this.currentUser = user;
-                        this.loading = false;
-                    }
-                }
-                this.userService.currentUser = this.currentUser;
-            });
-
-    }
-
-    signInWithGoogle(): void {
-        console.log('test');
-      //  this.authentificationService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    }
-
-    signInWithFB(): void {
-      //  this.authentificationService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    }
-
-    signOut(): void {
-     //   this.authentificationService.signOut();
-    }
+    this.loading = true;
+    this.authenticationService.login(this.f.username.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.loading = false;
+        });
+  }
 }

@@ -1,16 +1,23 @@
-<div class="form-group">
-  <h2>Galerie Photos</h2>
-  <div class="centerButtons">
-    <button class="btn btn-lg btn-success" [class.active]="filterBy==='all'" (click)="filterBy='all'">All</button>
-    <button class="btn btn-lg btn-success" [class.active]="filterBy==='prestations'" (click)="filterBy='prestations'">Prestation</button>
-    <button class="btn btn-lg btn-success" [class.active]="filterBy==='repetitions'" (click)="filterBy='repetitions'">Répétition</button>
-    <button class="btn btn-lg btn-success" [class.active]="filterBy==='divers'" (click)="filterBy='divers'">Divers</button>
-  </div>
-  <ul id="thumbnailsList">
-    <li *ngFor="let image of (visibleImages | imageFilter:filterBy)" >
-      <a [routerLink] ="['/image', image.id]">
-        <img src="{{image.url}}" class="tn" width="200" height="160">
-      </a>
-    </li>
-  </ul>
+
+<div class="masthead">
+    <div class="row h-100 align-items-center">
+        <div class="col-12 text-center">
+          <div class="form-group">
+            <h2>Galerie Photos</h2>
+            <div class="centerButtons">
+              <button class="btn btn-lg btn-success" [class.active]="filterBy==='all'" (click)="filterBy='all'">All</button>
+              <button class="btn btn-lg btn-success" [class.active]="filterBy==='prestations'" (click)="filterBy='prestations'">Prestation</button>
+              <button class="btn btn-lg btn-success" [class.active]="filterBy==='repetitions'" (click)="filterBy='repetitions'">Répétition</button>
+              <button class="btn btn-lg btn-success" [class.active]="filterBy==='divers'" (click)="filterBy='divers'">Divers</button>
+            </div>
+            <ul id="thumbnailsList">
+              <li *ngFor="let image of (visibleImages | imageFilter:filterBy)" >
+                <a [routerLink] ="['/image', image.id]">
+                  <img src="{{image.url}}" class="tn" width="200" height="160">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </div>
 </div>

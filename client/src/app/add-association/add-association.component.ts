@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AssociationService} from '../../service/association.service';
 import {NotificationService} from '../../shared/notification/notification.service';
-import {NotificationType} from '../../shared/notification/notification-type.model';
-// import {ImageUploadService} from '../../service/imageUpload.service';
-// import {ImageUploadModel} from '../image/imageUpload-model';
 import {Observable} from 'rxjs/Observable';
 import {ImageUploadService} from '../../service/imageUpload.service';
-import {ImageUploadModel} from '../image/imageUpload-model';
-import {AngularFireDatabase} from '@angular/fire/database';
- // import {AngularFireDatabase} from 'angularfire2/database';
+import {NotificationType} from '../../shared/notification/notification-type.model';
 
 @Component({
     selector: 'app-add-association',
@@ -18,11 +13,12 @@ import {AngularFireDatabase} from '@angular/fire/database';
 export class AddAssociationComponent implements OnInit {
 
     association: any = {};
-    selectedFile: any;
-    selectedFiles: FileList;
+    selectedFile: File = null;
     _getImages: Observable<any[]>;
-    currentFileUpload: ImageUploadModel;
     progress: {percentage: number} = {percentage: 0};
+    isPublished = true;
+    isSaved = false;
+  private onClose: any;
 
     constructor(
         private associationService: AssociationService,
@@ -30,52 +26,42 @@ export class AddAssociationComponent implements OnInit {
         private imageUploadService: ImageUploadService,
     ) {}
     ngOnInit() {
-        this.association.logo = {path: ''};
-        this.imageUploadService.getImages('/uploads')
-            .subscribe(imgage => {
-                console.log('imgage', imgage);
-            });
-        // this.imageUploadService.getImages('/uploads').subscribe( images => {
-        //     // this._getImages = images;
-        // });
-      // this._getImages = this.getImages('/uploads');
-     //  console.log('this._getImages', this._getImages);
     }
 
-    onselected(event) {
-        this.selectedFile = event.target.files[0];
-    }
-
-    // getImages(listPath): Observable<any[]> {
-    //     return this.db.list(listPath).valueChanges();
-    // }
     save() {
-      //  this.upload();
-       const association =  this.association;
-       this.associationService.newAssociation = association;
-       if (this.upload()) {
-           this.associationService.save(association)
-               .subscribe(
-                   () => {
-                       // message de notification
-                       // this.notificationService.addNotification(NotificationType.SUCCESS, 'Nouvelle association enregistrée !! .');
-                   });
-       }
+      this.imageUploadService.upload(this.selectedFile, this.association.name)
+        .finally(() => this.isPublished = true)
+        .subscribe(() => {
+            console.log(this.isPublished);
+
+            const association =  this.association;
+            this.associationService.newAssociation = association;
+            this.associationService.save(association)
+              .subscribe(
+                () => {
+
+                  // message de notification
+                  this.notificationService.addNotification(NotificationType.SUCCESS, 'Nouvelle association enregistrée !! .');
+                  this.isSaved = true;
+                  this.onClose.emit();
+                });
+          },
+          error => {
+            this.notificationService.addNotification(NotificationType.ERROR, error);
+          });
     }
 
-    selectFile(event) {
-        this.selectedFiles = event.target.files;
-    }
+  onSelectedFile(event) {
+      this.selectedFile = <File> event.target.files[0];
+  }
+  published() {
+    this.imageUploadService.upload(this.selectedFile, this.association.name)
+      .finally(() => this.isPublished = true)
+      .subscribe(() => {
+        },
+        error => {
+          console.log(error);
+        });
 
-    upload() {
-         const file = this.selectedFiles.item(0);
-         this.selectedFiles = undefined;
-         this.currentFileUpload = new ImageUploadModel(file);
-         this.imageUploadService.pushFileToStorage(this.currentFileUpload, this.progress);
-        //
-        // this.association.logo.path = this.currentFileUpload.getUrl();
-        // this.association.logo.name = this.currentFileUpload.file.name;
-        // récupérer le lien lorsque la barre des tache a fini
-
-    }
+  }
 }
