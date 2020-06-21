@@ -27,14 +27,14 @@ class Picture
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"event_get"})
+     * @Groups({"event_get","event_post"})
      */
     private $id ;
 
     /**
      * @var string
      * @ORM\Column(name="nom", type="string", length=255)
-     * @Groups({"event_get"})
+     * @Groups({"event_get","event_post"})
      */
     private $name;
 
@@ -47,6 +47,7 @@ class Picture
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="pictures", cascade={"persist"})
      * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
+     * @Groups({"event_get","event_post"})
      */
     private $category;
 
@@ -56,6 +57,11 @@ class Picture
      * @Groups({"event_get"})
      */
     private $path;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Logo",mappedBy="picture")
+     */
+    private $logo;
 
     /**
      * @return mixed

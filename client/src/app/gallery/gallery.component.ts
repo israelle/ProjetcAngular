@@ -1,4 +1,4 @@
-import {Component, OnChanges} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {ImageService} from '../../service/image.service';
 
 @Component({
@@ -6,7 +6,7 @@ import {ImageService} from '../../service/image.service';
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css']
 })
-export class GalleryComponent implements OnChanges  {
+export class GalleryComponent implements OnChanges, OnInit  {
 
     images: any[];
     filterBy = 'all';
@@ -20,4 +20,10 @@ export class GalleryComponent implements OnChanges  {
     ngOnChanges() {
         this.visibleImages = this.imageService.getImages();
     }
+
+  ngOnInit(): void {
+    this.imageService.getAllCategory().subscribe( data => {
+      console.log(data);
+    });
+  }
 }

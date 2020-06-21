@@ -41,8 +41,8 @@ class Event
 
     /**
      * @ORM\ManyToOne(targetEntity="Association")
+     * @ORM\JoinColumn(name="association_id", referencedColumnName="id")
      * @Groups({"event_get", "event_post"})
-
      */
     private $association;
 

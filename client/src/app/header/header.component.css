@@ -3,31 +3,31 @@
     padding:0;
     list-style-type:none;
     text-align:center;
-}
+ }
 
  li a {
     display:block;
      text-align: center;
-}
-ul.navbar-nav.mr-auto li a:hover {
+ }
+ 
+ ul.navbar-nav.mr-auto li a:hover {
     color: black;;
 }
 
  ul li ul {
     display:none;
-}
+ }
 
  ul li:hover ul {
     display:block;
-}
+ }
  li:hover ul li {
     float:none;
-}
-
+ }
  nav {
-     background-color: black;
+     background-color: darkolivegreen;
  }
 
-ul.navbar-nav.mr-auto li a {
+ ul.navbar-nav.mr-auto li a {
     color: black;
-}
+ }

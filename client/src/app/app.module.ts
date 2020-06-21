@@ -46,6 +46,8 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {AlertModule} from 'ngx-bootstrap/alert';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {AuthenticationService} from '../service/authentication.service';
+import { AddGalleryComponent } from './add-gallery/add-gallery.component';
+import {CategoryService} from '../service/category.service';
 
 
 // const config = new AuthServiceConfig([
@@ -66,6 +68,7 @@ const routes = [
     { path: 'image/:id', component: ImageDetailComponent },
     { path: 'profile/:id', component: ProfileComponent },
     { path: 'joinUs', component: JoinUsComponent },
+    { path: 'gallery/add', component: AddGalleryComponent },
     ];
 
 export function provideConfig() {
@@ -92,6 +95,7 @@ export function provideConfig() {
         ProfileComponent,
         JoinUsComponent,
         FooterComponent,
+        AddGalleryComponent,
     ],
   imports: [
     BrowserModule,
@@ -131,6 +135,7 @@ export function provideConfig() {
         ImageUploadService,
         MailService,
         AuthenticationService,
+        CategoryService,
     ],
     bootstrap: [AppComponent]
 })

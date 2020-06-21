@@ -8,6 +8,9 @@ import * as FileSaver from 'file-saver';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {RequestOptions} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import {Picture} from '../app/model/Picture';
+import {Logo} from '../app/model/Logo';
 
 @Injectable()
 export class ImageUploadService {
@@ -70,37 +73,32 @@ export class ImageUploadService {
     formData.append('image', image);
 
     const endPoint = `${environment.api_url}/pictures/${associationId}/update`;
-
-   // return this.uploadFile(endPoint, formData);
   }
 
-  public upload(image: File, name: string) {
+  public upload(image: File, name: string): Observable<Logo> {
       console.log(image);
     const logo = new FormData();
     logo.append('image', image);
     logo.append('name', name);
     const endPoint = `${environment.api_url}/upload/${name}`;
 
-    this.httpClient.post(endPoint, logo)
-      .subscribe(response => {
-        FileSaver.saveAs(response, name);
-      });
+    return this.httpClient.post<Logo>(endPoint, logo);
   }
 
-  public published(selectedFile) {
-    const headers = new Headers();
-    headers.append('content-type', 'application/json');
-    const formData = new FormData();
-    formData.append('urlPubli', selectedFile);
-    const body = {
-      urlPubli: selectedFile,
-    };
-    console.log( body);
-
-    return this.httpClient.post(environment.api_url + 'upload/' + selectedFile.name, body.urlPubli).subscribe(data => {
-      console.log(data);
-    });
-  }
+  // public published(selectedFile) {
+  //   const headers = new Headers();
+  //   headers.append('content-type', 'application/json');
+  //   const formData = new FormData();
+  //   formData.append('urlPubli', selectedFile);
+  //   const body = {
+  //     urlPubli: selectedFile,
+  //   };
+  //   console.log( body);
+  //
+  //   return this.httpClient.post(environment.api_url + 'upload/' + selectedFile.name, body.urlPubli).subscribe(data => {
+  //     console.log(data);
+  //   });
+  // }
 
 }
 

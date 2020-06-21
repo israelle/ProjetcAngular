@@ -1,0 +1,36 @@
+<h1 class="titleEvent">
+  Création d'une catégorie
+</h1>
+<div class="container-fluid">
+  <table class="table table-striped">
+    <tbody>
+    <tr>
+      <td colspan="1">
+        <form name="form" class="well form-horizontal" #f="ngForm" (ngSubmit)="save()" id="add-event-form" novalidate>
+          <fieldset>
+            <div class="form-group">
+              <label class="col-md-4 control-label">Nom de la catégorie:</label>
+              <div class="col-md-8 inputGroupContainer">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input type="text" class="form-control" placeholder="nom de la catégorie" [(ngModel)]="category.name"
+                         (ngModelChange)="onChangeTitle($event)" name="nameEvent">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <div class="form-group">
+            <div class="col-lg-pull-3">
+              <div class="form-group col-md-5">
+                <button class="btn btn-success"> Valider</button>
+                <a routerLink="/gallery" class="btn btn-danger">Retour</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

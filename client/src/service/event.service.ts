@@ -17,7 +17,7 @@ export class EventService {
 
     getEvent(): Observable<any> {
        return this.http.get(this.apiRouter.generate('api_events_get_collection'));
-}
+    }
 
     findEvents() {
 
